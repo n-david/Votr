@@ -13,7 +13,7 @@
     <%- include('partials/_nav')%>
     <section class="container">
       <section class="create-poll">
-        <form action="/" method="POST">
+        <form action="/submit" method="POST">
           <article class="form-group" >
             <label for="email">Email:</label>
             <input type="text" name="email" class="form-control">
@@ -61,8 +61,8 @@
               <input type="checkbox" class="form-check-input">Enable anonymous voters
             </label>
           </div>
-          <button type="submit" class="btn btn-primary">Create new poll!</button>
-          <button type="button" class="preview-poll btn btn-outline-success" data-toggle="modal" data-target="#modal-preview" data-whatever="@mdo">Preview</button>
+          <input type="submit" class="btn btn-primary">Create new poll!</input>
+          <button type="submit" class="preview-poll btn btn-outline-success" data-toggle="modal" data-target="#modal-preview" data-whatever="@mdo">Preview</button>
         </form>
       </section>
 
