@@ -22,6 +22,15 @@
     display: none;
   }
 
+  .choice-info-block {
+    background-color: #98ea81;
+    visibility: hidden;
+  }
+
+  .choice-info-button {
+    float: right;
+  }
+
   .choice-inputs {
     display: flex;
   }
@@ -93,9 +102,15 @@
     // modal.find('.modal-body input').val(recipient)
   });
 
+
   $(function() {
     $(".sortable").sortable();
-    $(".sortable").disableSelection();
+    // $(".sortable").disableSelection();
+
+    $(".ui-state-default").on('click', function(){
+      $(this).css("background-color", "yellow");
+      $(this).closest(".container").find(".choice-info-block").css("visibility", "visible");
+    });
   });
   
 </script>
