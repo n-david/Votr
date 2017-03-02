@@ -1,0 +1,53 @@
+<style>
+  .add-choice {
+    float: right;
+  }
+  .clear {
+    clear: both;
+  }
+
+  .create-poll {
+    background-color: #eeeeee;
+    margin: 0 auto;
+    padding: 50px;
+    width: 60%;
+  }
+
+  .choice-describe {
+    display: none;
+  }
+
+  .choice-inputs {
+    display: flex;
+  }
+
+  .delete-choice {
+    padding-left:5px;
+  }
+
+  .poll-success{
+    border: 1px solid darkslategrey;
+    margin: 0 auto;
+    padding: 20px;
+    width: 60%;
+  
+  }
+  .status-message {
+    background-color: #ffffa0;
+  }
+
+  
+</style>
+
+<script>
+  $('#exampleModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var recipient = button.data('whatever') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-title').text('New message to ' + recipient)
+  modal.find('.modal-body input').val(recipient)
+});
+</script>
+
