@@ -11,13 +11,13 @@ exports.up = function(knex, Promise) {
       table.string('admin_key');
       table.string('voter_key');
       table.date('date_created');
-      table.integer('user_id').references('id').inTable('users');
+      table.integer('user_id').references('id').inTable('users').onDelete('CASCADE');
     }),
     knex.schema.createTable('choices', (table) => {
       table.increments();
       table.string('title');
       table.string('description');
-      table.integer('poll_id').references('id').inTable('polls');
+      table.integer('poll_id').references('id').inTable('polls').onDelete('CASCADE');
     }),
     knex.schema.createTable('voters', (table) => {
       table.increments();
@@ -26,9 +26,9 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('results', (table) => {
       table.increments();
       table.integer('rank');
-      table.integer('poll_id').references('id').inTable('polls');
-      table.integer('choice_id').references('id').inTable('choices');
-      table.integer('voter_id').references('id').inTable('voters');
+      table.integer('poll_id').references('id').inTable('polls').onDelete('CASCADE');
+      table.integer('choice_id').references('id').inTable('choices').onDelete('CASCADE');
+      table.integer('voter_id').references('id').inTable('voters').onDelete('CASCADE');
     })
   ])
 };
