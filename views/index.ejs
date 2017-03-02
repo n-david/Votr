@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Home Page</title>
+    <title>Votr App</title>
     <%- include('partials/_head')%>
   </head>
 
   <body>
-    <!-- include _nav.ejs -->
-    <section id="container">
+    <%- include('partials/_nav')%>
+    <section class="container">
       <section class="create-poll">
         <form action="/" method="POST">
           <article class="form-group" >
@@ -58,7 +58,7 @@
             </label>
           </div>
           <button type="submit" class="btn btn-primary">Create new poll!</button>
-          <button type="button" class="preview-poll btn btn-outline-info">Preview</button>
+          <button type="button" class="preview-poll btn btn-outline-success">Preview</button>
         </form>
       </section>
   </section>
