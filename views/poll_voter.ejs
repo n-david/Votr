@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Votr App</title>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- TEST CSS/JS partial -->
+    <%- include('partials/_test')%>
+
+  </head>
+
+  <body>
+    <%- include('partials/_nav')%>
+    <section class="container">
+      <section class="vote col-md-8">
+        <!-- TODO: Display title FROM 'polls'-->
+        <h1 class="poll-title">What to do on Saturday Night?</h1>
+     
+        <section class="poll-choices">
+          <!-- TODO: Display all choices FROM 'choices' WHERE poll_id = id-->
+          <ul class="choices-list sortable">
+            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1<span class="choice-info-button"><i class="fa fa-info-circle" aria-hidden="true"></i></span></li>
+            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
+            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
+            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
+          </ul>
+        </section>
+    </section>
+  </body>
+</html>

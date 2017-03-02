@@ -38,6 +38,10 @@
     padding-left:5px;
   }
 
+  .poll-info {
+   padding: 10px; 
+  }
+
   .poll-success{
     border: 1px solid darkslategrey;
     margin: 0 auto;
@@ -45,6 +49,7 @@
     width: 60%;
   
   }
+
   .preview-html {
     border-bottom: 1px solid #000;
   }
@@ -52,8 +57,30 @@
     background-color: #ffffa0;
   }
 
+  .single-poll-result {
+    background-color: #eee;
+    width: 20%;
+  }
+
+  .total-poll-result {
+    background-color: #ffffa0;
+  }
+
+  .result-poll-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  .create-another-poll {
+    margin-top: 50px;
+  }
+  
+  .sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  .sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+  .sortable li span { position: absolute; margin-left: -1.3em; }
+
   
 </style>
+
 
 <script>
   $('#modal-preview').on('show.bs.modal', function (event) {
@@ -65,5 +92,11 @@
     // modal.find('.modal-title').text('New message to ' + recipient)
     // modal.find('.modal-body input').val(recipient)
   });
+
+  $(function() {
+    $(".sortable").sortable();
+    $(".sortable").disableSelection();
+  });
+  
 </script>
 
