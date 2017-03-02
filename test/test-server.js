@@ -11,7 +11,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.render("index.ejs");
-  //res.render(__dirname + '../views/index.ejs');
 });
 
 app.post("/", (req, res) => {
