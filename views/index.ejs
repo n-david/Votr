@@ -28,9 +28,9 @@
           </article>
           <!--Choices: 2 predefined-->
           <article class="form-group choice-form-group">
-            <label for="email">Choice 1:</label>
+            <label for="choice">Choice 1:</label>
             <div class="choice-inputs">
-              <input type="text" name="description" class="form-control">
+              <input type="text" name="choice" class="form-control">
               <span class="delete-choice"><i class="fa fa-trash-o" aria-hidden="true"></i></span>    
             </div>        
             <small id="describe-expand" class="form-text text-muted"><a href="#">Expand description box</a></small>
@@ -40,9 +40,9 @@
             </div>
           </article> 
           <article class="form-group choice-form-group">
-            <label for="email">Choice 2:</label>
+            <label for="choice">Choice 2:</label>
             <div class="choice-inputs">
-              <input type="text" name="description" class="form-control">
+              <input type="text" name="choice" class="form-control">
               <span class="delete-choice"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
             </div>
             <small id="describe-expand" class="form-text text-muted"><a href="#">Expand description box</a></small>
@@ -62,12 +62,13 @@
             </label>
           </div>
           <button type="submit" class="btn btn-primary">Create new poll!</button>
-          <button type="button" class="preview-poll btn btn-outline-success">Preview</button>
+          <button type="button" class="preview-poll btn btn-outline-success" data-toggle="modal" data-target="#modal-preview" data-whatever="@mdo">Preview</button>
         </form>
       </section>
 
       <section class="modal-container">
           <!--TODO: include partials/_modal-preview-->
+          <%- include('partials/_modal_preview')%>          
       </section>
 
   </section>
