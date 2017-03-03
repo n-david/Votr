@@ -1,57 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Meta Information -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width" initial-scale="1.0">
-
-    <!-- Layout CSS -->
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
-    <!-- External Font -->
-    <!-- Glyphs -->
-    <script src="https://use.fontawesome.com/155465b6a9.js"></script>
-
-    <!-- App CSS -->
-
-    <!-- App JS -->
-    <script type="text/javascript" src="/scripts/app.js"></script>
+    <!-- Now using common _head with bootstrap-->
+    <%- include('partials/_head')%>
 
     <!-- Draggable jQuery UI functions-->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+    <script type="text/javascript" src="/vendor/jquery-sortable.js"></script>
+    <script type="text/javascript" src="/scripts/draggable.js"></script>
+    <script type="text/javascript" src="/scripts/test-app.js"></script>
 
+   
     <!-- TEST CSS/JS partial -->
-    <%- include('partials/_test')%>
+    <!--<%- include('partials/_test')%>-->
 
   </head>
+  <%- include('partials/_nav')%>
 
   <body>
-    <%- include('partials/_nav')%>
-    <section class="container">
-      <section class="vote col-md-8">
-        <!-- TODO: Display title FROM 'polls'-->
-        <h1 class="poll-title">What to do on Saturday Night?</h1>
+    <section class="container-fluid">
+      <div class="row voter-info">
+        <section class="vote col-md-7">
+          <!-- TODO: Display title FROM 'polls'-->
+          <h1 class="poll-title">What to do on Saturday Night?</h1>
+        
+          <section class="poll-choices">
+            <!-- TODO: Display all choices FROM 'choices' WHERE poll_id = id-->
+            <ol class='choices-list'>
+              <li class="choice" data-description="There's unlimited juice? This party is gonna be oooffff the hooook.">party at my place</li>
+              <li class="choice" data-description=";) ;) ;) ;)">netflix and chill</li>
+              <li class="choice" data-description="love dem nachos">nachos night at warehouse</li>
+              <li class="choice" data-description="i luv birds">watch some birds</li>
+            </ol>
+          </section>
+           <button class="vote-btn btn btn-primary">Vote!</button>
+           
+          
+        </section>
+        <aside class="choice-info-block col-md-3">
+            <h2></h2>
+            <p></p>
+        </aside>
+      </div>
      
-        <section class="poll-choices">
-          <!-- TODO: Display all choices FROM 'choices' WHERE poll_id = id-->
-          <ul class="choices-list sortable">
-            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
-            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
-            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
-            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
-          </ul>
-        </section>
-
-        <section class="choice-info-block col-md-2">
-          <h2>party at my place</h2>
-          <p>There's unlimited juice? This party is gonna be off the hook. 
-            No, Pop-pop does not get a treat. I just bought you a f**king pizza. Mr. Zuckerkorn, you've been warned about touching. 
-            Barry: You said spanking.</p>
-        </section>
     </section>
   </body>
 </html>

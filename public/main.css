@@ -1,0 +1,37 @@
+body {
+  background-color: #EEE;
+}
+
+body .container {
+  margin-top: 200px;
+}
+
+#nav-bar {
+  left: 0;
+  right: 0;
+  background-color: #EEEEEE;
+  color: #00A087;
+  display: flex;
+  justify-content: space-between;
+  height: 150px;
+  padding: 0 2em;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+
+#nav-bar .nav-brand {
+  padding-top: 20px;
+}
+
+#nav-bar .nav-brand span {
+  font-family: "Oswald", sans-serif;
+  font-size: 2em;
+  position: relative;
+  padding-left: 10px;
+}
+
+#nav-bar .nav-brand img {
+  height: 100px;
+  width: 100px;
+}
