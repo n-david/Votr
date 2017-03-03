@@ -1,14 +1,11 @@
 $(document).ready(function() {
 
-let choiceCounter = 2;
-
   function createChoiceElement() {
 
-    choiceCounter++;
 
     const $choiceForm = $("<article>").addClass("form-group choice-form-group");
 
-    const $choiceNumber = $("<label>").prepend("Choice " + choiceCounter + ": ");
+    const $choiceNumber = $("<label>").prepend("Choice: ");
 
     const $div = $("<div>").addClass("choice-inputs");
     const $choiceTextBox = $("<input>").addClass("form-control");
@@ -17,6 +14,8 @@ let choiceCounter = 2;
     //     <i class='fa fa-trash-o' aria-hidden='true'></i>
     //   </span>`);
     const $deleteChoice = $("<span>").addClass("delete-choice").html(`<i class="fa fa-trash-o" aria-hidden="true"></i>`);
+
+    $deleteChoice.on("click", deleteThis2);
 
     const $describeExpand = $("<small>").addClass("describe-expand").html(`<p>Expand description box</p>`);
 
@@ -66,5 +65,17 @@ let choiceCounter = 2;
   }
 
   expand();
+
+  function deleteThis() {
+    $(".delete-choice").on("click", function () {
+      $(this.closest("article")).remove();
+    })
+  }
+
+  function deleteThis2() {
+      $(this.closest("article")).remove();
+  }
+
+  deleteThis();
 
 });
