@@ -1,6 +1,5 @@
 //document on ready:
-$(() => {
-
+$(document).ready(function() {
 
   // $.ajax({
   //   method: "GET",
@@ -11,6 +10,8 @@ $(() => {
   //   }
   // });;
 });
+
+
 
 // $(document).ready(function() {
 
@@ -44,4 +45,13 @@ $(() => {
           //     <textarea type="text" name="choice-description" class="form-control" rows="3"></textarea>
           //   </div>
           // </article>
+
+// $.ajax({
+  //   method: "GET",
+  //   url: "/api/users"
+  // }).done((users) => {
+  //   for(user of users) {
+  //     $("<div>").text(user.name).appendTo($("body"));
+  //   }
+  // });;
 

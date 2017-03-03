@@ -12,10 +12,13 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
+
 // Seperated Routes for each Resource
 //const usersRoutes = require("./routes/users");
 const queryHelpers = require("./lib/query-helpers")(knex);
 const pollRoutes = require("./routes/polls")(queryHelpers);
+const mailgun     = require("./lib/mailgun");
+const makeKey = require("./lib/util/get-link");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -45,28 +48,29 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  queryHelpers.insertEmailUsers(req.body, (polls) => {
-    res.redirect('/');
-  });
-});
-
-app.post("/", (req, res) => {
-  const email = req.body.email
-  var api_key = 'key-80216e96640c6edd8a9e5bb8a9bcaae7';
-  var domain = 'sandboxa721143bbca24e14bca66e736c6fdfb9.mailgun.org';
-  var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
-
-  var data = {
-    from: 'Votr <postmaster@sandboxa721143bbca24e14bca66e736c6fdfb9.mailgun.org>',
-    to: email,
-    subject: 'Votr Admin/Voter Links',
-    text: `Testing some Mailgun awesomness! \n Admin url: adminURL \n Voter url: voterURL`
+  const email = req.body.email;
+  const choices = req.body.choice;
+  const pollData = {
+    title: req.body.title,
+    description: req.body.description,
+    admin_key: makeKey(),
+    voter_key: makeKey(),
+    date_created: new Date(),
+    active: true
+  };
+  const choiceData = {
+    title: req.body['choice-description'],
+    description: '',
   };
 
-  mailgun.messages().send(data, function (error, body) {
-    console.log(body);
+  queryHelpers.insertTables(email, pollData, choiceData, (results) => {
+    console.log(results, 'from server, after promises')
+    res.redirect("poll/a/success");
   });
-  res.redirect("/poll/a/success");
+
+  //Send links to mailgun
+  mailgun(req.body.email);
+
 });
 
 app.listen(PORT, () => {
