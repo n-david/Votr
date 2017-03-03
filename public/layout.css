@@ -2,6 +2,6 @@ body {
   background-color: #EEE;
 }
 
-body h1 {
-  color: #244751;
+body .container {
+  margin-top: 200px;
 }

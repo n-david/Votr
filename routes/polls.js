@@ -1,6 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 
+
 module.exports = (queryHelpers) => {
 
   //All routes that prefixes with /polls/ go here
