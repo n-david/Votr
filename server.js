@@ -48,37 +48,29 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  console.log(req.body);
-  const choices = req.body.choice;
   const email = req.body.email;
-
+  const choices = req.body.choice;
   const pollData = {
     title: req.body.title,
     description: req.body.description,
     admin_key: makeKey(),
     voter_key: makeKey(),
-    date_created: Date.now(),
+    date_created: new Date(),
     active: true
   };
-
-  //push to 'choices' table
   const choiceData = {
-
+    title: req.body['choice-description'],
+    description: '',
   };
 
-  queryHelpers.insertEmailUsers(email, () => {
-    queryHelpers.getUserIdByEmail(email, (result) => {
-      pollData.user_id = result[0].id;
-      console.log("result: ", result[0].id);
-      console.log(pollData);
-    });
-    res.redirect("/poll/a/success");
+  queryHelpers.insertTables(email, pollData, choiceData, (results) => {
+    console.log(results, 'from server, after promises')
+    res.redirect("poll/a/success");
   });
-
 
   //Send links to mailgun
   mailgun(req.body.email);
-  
+
 });
 
 app.listen(PORT, () => {
