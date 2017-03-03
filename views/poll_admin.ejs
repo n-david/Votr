@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Votr App</title>
+    <%- include('partials/_head')%>
+
+    <!-- TEST CSS/JS partial -->
+    <%- include('partials/_head')%>
+
+  </head>
+
+  <body>
+    <%- include('partials/_nav')%>
+    <!--<section class="container">-->
+      <div class="row">
+         <section class="total-poll-result col-md-8">
+        <section class="poll-info">
+          <!-- TODO: Display title, description FROM 'polls'-->
+          <h1 class="poll-title">What to do on Saturday Night</h1>
+          <p class="poll-describe">There's unlimited juice? This party is gonna be off the hook. 
+            No, Pop-pop does not get a treat. I just bought you a f**king pizza. Mr. Zuckerkorn, you've been warned about touching. 
+            Barry: You said spanking. </p>
+        </section>
+        <section class="poll-choices">
+          <!-- TODO: Display all choices FROM 'choices' WHERE poll_id = id-->
+
+        </section>
+
+        <footer class="result-poll-actions">
+          <div class="close-poll">
+            <small><p>Close poll and Send results to your friends</p></small>
+            <button type="button" class="btn btn-primary">Close poll</button>
+          </div>
+          <div class="create-another-poll">
+            <button type="button" class="btn btn-primary">Create a new poll!</button>
+          </div>
+        </footer>
+      </section>
+
+      <section class="single-poll-result col-md-4">
+        <!--TODO: Display single person's poll results -->
+         <%- include('partials/_single_result')%>
+      </section>
+
+      </div> 
+    <!--</section>-->
+  </body>
+</html>
