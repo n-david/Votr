@@ -57,6 +57,7 @@ ol.choices-list li.placeholder:before {
   /** Define arrowhead **/
 }
 
+
 .poll-title {
   color: $brand-color-red;
   font : {
@@ -68,12 +69,17 @@ ol.choices-list li.placeholder:before {
 .vote {
   @include border-radius(10px);
   background-color: $gray-bg;
-  padding-top: 60px;
-  height: 100%;
+  padding: 30px;
+  overflow: hiden;
+
+  button {
+    float: right;
+  }
 }
 
 .voter-info {
   display: flex;
   justify-content: space-between;
+  padding-left: 20px;
 }
 
