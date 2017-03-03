@@ -1,7 +1,7 @@
 #nav-bar {
   @include full-width;
-  background-color: $brand-color;
-  color: $brand-font-color;
+  background-color: $gray-bg;
+  color: $brand-color;
   display: flex;
   justify-content: space-between;
   height: 150px;
@@ -11,18 +11,20 @@
   z-index: 1;
 
   .nav-brand {
-
+    padding-top: 20px;
     span {
-      font-size: 2em;
+      font : {
+        family: $brand-font;
+        size: 2em;
+      }
       position: relative;
       padding-left: 10px;
-      line-height: 80px;
-      top: -25px;
+        
     }
 
     img {
-      height: 80px;
-      width: 80px;
+      height: 100px;
+      width: 100px;
     }
   }
 }
