@@ -17,7 +17,8 @@ const knexLogger  = require('knex-logger');
 //const usersRoutes = require("./routes/users");
 const queryHelpers = require("./lib/query-helpers")(knex);
 const pollRoutes = require("./routes/polls")(queryHelpers);
-const mailgun     = require('./lib/mailgun');
+const mailgun     = require("./lib/mailgun");
+const makeKey = require("./lib/util/get-link");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -47,24 +48,37 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  const email = req.body.email
+  console.log(req.body);
+  const choices = req.body.choice;
+  const email = req.body.email;
 
-  mailgun(email);
-  // var api_key = 'key-80216e96640c6edd8a9e5bb8a9bcaae7';
-  // var domain = 'sandboxa721143bbca24e14bca66e736c6fdfb9.mailgun.org';
-  // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+  const pollData = {
+    title: req.body.title,
+    description: req.body.description,
+    admin_key: makeKey(),
+    voter_key: makeKey(),
+    date_created: Date.now(),
+    active: true
+  };
 
-  // var data = {
-  //   from: 'Votr <postmaster@sandboxa721143bbca24e14bca66e736c6fdfb9.mailgun.org>',
-  //   to: email,
-  //   subject: 'Votr Admin/Voter Links',
-  //   text: `Testing some Mailgun awesomness! \n Admin url: adminURL \n Voter url: voterURL`
-  // };
+  //push to 'choices' table
+  const choiceData = {
 
-  // mailgun.messages().send(data, function (error, body) {
-  //   console.log(body);
-  // });
-  res.redirect("/poll/a/success");
+  };
+
+  queryHelpers.insertEmailUsers(email, () => {
+    queryHelpers.getUserIdByEmail(email, (result) => {
+      pollData.user_id = result[0].id;
+      console.log("result: ", result[0].id);
+      console.log(pollData);
+    });
+    res.redirect("/poll/a/success");
+  });
+
+
+  //Send links to mailgun
+  mailgun(req.body.email);
+  
 });
 
 app.listen(PORT, () => {
