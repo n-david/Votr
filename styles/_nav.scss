@@ -1,0 +1,28 @@
+#nav-bar {
+  @include full-width;
+  background-color: $brand-color;
+  color: $brand-font-color;
+  display: flex;
+  justify-content: space-between;
+  height: 150px;
+  padding: $lr-pad;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+
+  .nav-brand {
+
+    span {
+      font-size: 2em;
+      position: relative;
+      padding-left: 10px;
+      line-height: 80px;
+      top: -25px;
+    }
+
+    img {
+      height: 80px;
+      width: 80px;
+    }
+  }
+}
