@@ -12,10 +12,12 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
+
 // Seperated Routes for each Resource
 //const usersRoutes = require("./routes/users");
 const queryHelpers = require("./lib/query-helpers")(knex);
 const pollRoutes = require("./routes/polls")(queryHelpers);
+const mailgun     = require('./lib/mailgun');
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -46,20 +48,22 @@ app.get("/", (req, res) => {
 
 app.post("/", (req, res) => {
   const email = req.body.email
-  var api_key = 'key-80216e96640c6edd8a9e5bb8a9bcaae7';
-  var domain = 'sandboxa721143bbca24e14bca66e736c6fdfb9.mailgun.org';
-  var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
-  var data = {
-    from: 'Votr <postmaster@sandboxa721143bbca24e14bca66e736c6fdfb9.mailgun.org>',
-    to: email,
-    subject: 'Votr Admin/Voter Links',
-    text: `Testing some Mailgun awesomness! \n Admin url: adminURL \n Voter url: voterURL`
-  };
+  mailgun(email);
+  // var api_key = 'key-80216e96640c6edd8a9e5bb8a9bcaae7';
+  // var domain = 'sandboxa721143bbca24e14bca66e736c6fdfb9.mailgun.org';
+  // var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
 
-  mailgun.messages().send(data, function (error, body) {
-    console.log(body);
-  });
+  // var data = {
+  //   from: 'Votr <postmaster@sandboxa721143bbca24e14bca66e736c6fdfb9.mailgun.org>',
+  //   to: email,
+  //   subject: 'Votr Admin/Voter Links',
+  //   text: `Testing some Mailgun awesomness! \n Admin url: adminURL \n Voter url: voterURL`
+  // };
+
+  // mailgun.messages().send(data, function (error, body) {
+  //   console.log(body);
+  // });
   res.redirect("/poll/a/success");
 });
 
