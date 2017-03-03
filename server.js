@@ -45,6 +45,12 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
+  queryHelpers.insertEmailUsers(req.body, (polls) => {
+    res.redirect('/');
+  });
+});
+
+app.post("/", (req, res) => {
   const email = req.body.email
   var api_key = 'key-80216e96640c6edd8a9e5bb8a9bcaae7';
   var domain = 'sandboxa721143bbca24e14bca66e736c6fdfb9.mailgun.org';

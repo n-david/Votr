@@ -1,7 +1,7 @@
 //document on ready:
 $(() => {
 
-  
+
   // $.ajax({
   //   method: "GET",
   //   url: "/api/users"
