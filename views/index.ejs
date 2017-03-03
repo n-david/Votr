@@ -27,31 +27,34 @@
             <textarea type="text" name="description" class="form-control" rows="3"></textarea>
           </article>
           <!--Choices: 2 predefined-->
+        <div class="choice-container">
           <article class="form-group choice-form-group">
-            <label for="choice">Choice 1:</label>
+            <label for="choice">Choice: </label>
             <div class="choice-inputs">
               <input type="text" name="choice" class="form-control">
               <span class="delete-choice"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
             </div>
-            <small class="describe-expand" class="form-text text-muted"><a href="#">Expand description box</a></small>
+            <small class="describe-expand" class="form-text text-muted"><p>Expand description box</p></small>
             <div class="choice-describe">
               <label for="choice-description">Description:</label>
               <textarea type="text" name="choice_description" class="form-control" rows="3"></textarea>
             </div>
           </article>
           <article class="form-group choice-form-group">
-            <label for="choice">Choice 2:</label>
+            <label for="choice">Choice: </label>
             <div class="choice-inputs">
               <input type="text" name="choice" class="form-control">
               <span class="delete-choice"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
             </div>
-            <small class="describe-expand" class="form-text text-muted"><a href="#">Expand description box</a></small>
+            <small class="describe-expand" class="form-text text-muted"><p>Expand description box</p></small>
             <div class="choice-describe">
               <label for="choice-description">Description:</label>
               <textarea type="text" name="choice_description" class="form-control" rows="3"></textarea>
             </div>
           </article>
+        </div>
           <!--TODO: Choices: Render added choices-->
+          <div class="choice-container-created"></div>
           <!--Add choices-->
           <span class="add-choice"><i class="fa fa-plus" aria-hidden="true"></i></span>
           <div class="clear"></div>
@@ -64,6 +67,7 @@
           <input type="submit" class="btn btn-primary">Create new poll!</input>
           <button type="button" class="preview-poll btn btn-outline-success" data-toggle="modal" data-target="#modal-preview" data-whatever="@mdo">Preview</button>
         </form>
+
       </section>
 
       <section class="modal-container">

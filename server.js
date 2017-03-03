@@ -48,9 +48,8 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  const email = req.body.email;
-  const choices = req.body.choice;
   const pollData = {
+    email: req.body.email,
     title: req.body.title,
     description: req.body.description,
     admin_key: makeKey(),
@@ -58,15 +57,31 @@ app.post("/", (req, res) => {
     date_created: new Date(),
     active: true
   };
-  const choiceData = {
-    title: req.body['choice-description'],
-    description: '',
-  };
 
-  queryHelpers.insertTables(email, pollData, choiceData, (results) => {
-    console.log(results, 'from server, after promises')
-    res.redirect("poll/a/success");
+  queryHelpers.insertPollTable(pollData, (poll_id) => {
+    console.log(poll_id, 'from server, poll_id**************************************************')
+    console.log(req.body);
+    console.log(req.body.choice);
+    for (let i = 0; i < req.body.choice.length; i++) {
+      const choiceData = {
+        title: req.body.choice[i],
+        description: req.body.choice_description[i],
+        poll_id: poll_id
+      }
+      queryHelpers.insertChoicesTable(choiceData)
+    }
+    // for (let choice of req.body.choice) {
+    //   console.log(choice, 'within for loop');
+    //   const choiceData = {
+    //     title: choice,
+    //     description: '',
+    //     poll_id: poll_id
+    //   }
+    //   queryHelpers.insertChoicesTable(choiceData)
+    // }
   });
+
+  res.redirect("poll/a/success");
 
   //Send links to mailgun
   mailgun(req.body.email);
