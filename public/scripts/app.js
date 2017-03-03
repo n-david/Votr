@@ -18,7 +18,9 @@ let choiceCounter = 2;
     //   </span>`);
     const $deleteChoice = $("<span>").addClass("delete-choice").html(`<i class="fa fa-trash-o" aria-hidden="true"></i>`);
 
-    const $describeExpand = $("<small>").addClass("describe-expand2").html(`<p>Expand description box</p>`);
+    const $describeExpand = $("<small>").addClass("describe-expand").html(`<p>Expand description box</p>`);
+
+    $describeExpand.on("click", expand2);
 
 
     // const $expandedDescription = $("<div>").addClass("choice-describe");
@@ -37,13 +39,14 @@ let choiceCounter = 2;
 
     $choiceForm.append($choiceNumber, $div, $describeExpand, $expandedDescription);
 
+
     return $choiceForm;
   }
 
   $('.fa-plus').on('click', function() {
     console.log("click");
     createChoiceElement().appendTo($('.choice-container-created'));
-    expand2();
+    // expand();
   });
 
 
@@ -56,10 +59,10 @@ let choiceCounter = 2;
   }
 
   function expand2(){
-      $(".describe-expand2").on("click", function() {
+      // $(".describe-expand2").on("click", function() {
     console.log("click");
     $(this).siblings('.choice-describe').slideToggle('fast');
-    })
+    // })
   }
 
   expand();
