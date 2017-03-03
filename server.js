@@ -11,6 +11,7 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
+const path = require('path');
 
 
 // Seperated Routes for each Resource
@@ -30,13 +31,16 @@ app.use(knexLogger(knex));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/styles", sass({
-  src: __dirname + "/styles",
-  dest: __dirname + "/public/styles",
+
+//node-sass 
+app.use(sass({
+  src: path.join(__dirname, "styles"),
+  dest: path.join(__dirname, "public"),
   debug: true,
-  outputStyle: 'expanded'
-}));
-app.use(express.static("public"));
+  force: true,
+  outputStyle: 'expanded',
+  prefix: '/styles'
+}),express.static("public"));
 
 // Mount all resource routes
 // app.use("/api/users", usersRoutes(knex));
