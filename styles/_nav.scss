@@ -1,0 +1,30 @@
+#nav-bar {
+  @include full-width;
+  background-color: $gray-bg;
+  color: $brand-color-turquoise;
+  display: flex;
+  justify-content: space-between;
+  height: 150px;
+  padding: $lr-pad;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+
+  .nav-brand {
+    padding-top: 20px;
+    span {
+      font : {
+        family: $brand-font;
+        size: 2em;
+      }
+      position: relative;
+      padding-left: 10px;
+
+    }
+
+    img {
+      height: 100px;
+      width: 100px;
+    }
+  }
+}

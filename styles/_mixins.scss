@@ -1,0 +1,31 @@
+// === MIXINS ===
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin box-shadow($shadows...) {
+    -webkit-box-shadow: $shadows;
+      -moz-box-shadow: $shadows;
+        -ms-box-shadow: $shadows;
+        box-shadow: $shadows;
+}
+
+@mixin full-width {
+  left:0;
+  right:0;
+}
+
+@mixin primary-btn {
+  @include border-radius(5px);
+  background-color: $brand-color;
+  border: $border;
+  color: $brand-font-color;
+}
+
+@mixin full-width {
+  left:0;
+  right:0;
+}
