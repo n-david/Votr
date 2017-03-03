@@ -11,8 +11,9 @@
 
   <body>
     <%- include('partials/_nav')%>
-    <section class="container">
-      <section class="total-poll-result col-md-8">
+    <!--<section class="container">-->
+      <div class="row">
+         <section class="total-poll-result col-md-8">
         <section class="poll-info">
           <!-- TODO: Display title, description FROM 'polls'-->
           <h1 class="poll-title">What to do on Saturday Night</h1>
@@ -36,10 +37,12 @@
         </footer>
       </section>
 
-      <section class="single-poll-result col-md-2">
+      <section class="single-poll-result col-md-4">
         <!--TODO: Display single person's poll results -->
          <%- include('partials/_single_result')%>
       </section>
-    </section>
+
+      </div> 
+    <!--</section>-->
   </body>
 </html>
