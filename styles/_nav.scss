@@ -1,7 +1,7 @@
 #nav-bar {
   @include full-width;
   background-color: $gray-bg;
-  color: $brand-color;
+  color: $brand-color-turquoise;
   display: flex;
   justify-content: space-between;
   height: 150px;
@@ -19,7 +19,7 @@
       }
       position: relative;
       padding-left: 10px;
-        
+
     }
 
     img {

@@ -1,0 +1,79 @@
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.choice {
+  @include border-radius(2px);
+  background-color: lighten($brand-color-turquoise, 25%);
+  cursor: pointer;
+  padding: 10px;
+  &:nth-child(even) { 
+    background: lighten($brand-color-green, 30%);
+  }
+  &:hover{
+    background-color: lighten($brand-color-yellow, 30%);;
+  }
+}
+
+.choice-info-block {
+  background-color: lighten($brand-color-yellow, 20%);
+  margin-left: 16%;
+  padding: 50px;
+
+  h2 {
+    color: $header-color;
+    font : {
+      family: $brand-font;
+      size: 2em;
+    }
+  }
+
+  p {
+    color: $content-color;
+    font : {
+      family: $content-font;
+      size: 0.8em;
+    }
+    padding-top: 8px;
+  }
+}
+
+.choices-list {
+  padding: 20px;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+
+ol.choices-list li.placeholder {
+  position: relative;
+  /** More li styles **/
+}
+ol.choices-list li.placeholder:before {
+  position: absolute;
+  /** Define arrowhead **/
+}
+
+.poll-title {
+  color: $brand-color-red;
+  font : {
+    family: $brand-font;
+    size: 2em;
+  }
+}
+
+.vote {
+  @include border-radius(10px);
+  background-color: $gray-bg;
+  padding-top: 60px;
+  height: 100%;
+}
+
+.voter-info {
+  display: flex;
+  justify-content: space-between;
+}
+
