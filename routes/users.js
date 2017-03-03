@@ -6,11 +6,8 @@ const router  = express.Router();
 module.exports = (knex) => {
 
   router.get("/", (req, res) => {
-    knex
-      .select("*")
-      .from("users")
-      .then((results) => {
-        res.json(results);
+    knex.select().from("users").then((results) => {
+      res.json(results);
     });
   });
 
