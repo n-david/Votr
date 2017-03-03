@@ -16,6 +16,7 @@ body.dragging, body.dragging * {
 }
 
 .choice-info-block {
+  @include border-radius(10px 0 0 10px);
   background-color: lighten($brand-color-yellow, 20%);
   margin-left: 16%;
   padding: 50px;
@@ -69,6 +70,7 @@ ol.choices-list li.placeholder:before {
 .vote {
   @include border-radius(10px);
   background-color: $gray-bg;
+  margin: 0 auto;
   padding: 30px;
   overflow: hiden;
 
