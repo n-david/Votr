@@ -58,11 +58,16 @@ $(document).ready(function() {
       $(this).closest("li").remove();    
   });
 
+  $(".email-form").on("click", ".delete-email-input", function(e) {
+    $(this).closest("article").remove();
+  });
+
   //Add email input on modal 
   $(".add-email").on("click", function(e) {
     const emailFormGroup = `<article class="form-inline email-form-group">
                               <label for="v-email form-control-label">Email:</label>
                               <input type="email" name="email" class="form-control email-input">
+                              <span class="delete-email-input"><i class="fa fa-times" aria-hidden="true"></i></span>
                             </article>`;
     $(this).closest(".email-containers").find(".email-form").append(emailFormGroup);
   });
@@ -77,7 +82,7 @@ $(document).ready(function() {
       let emailItem = `<li class="send-to">${email}<span class="delete-added-email"><i class="fa fa-trash-o" aria-hidden="true"></i></span></li>`;
       $(".email-list").append(emailItem);
     });
-    
+
     //clear extra emailFromGroups & fields
     $(".email-form article:not(:first)").remove();
     $(this).closest(".modal-body").find("form").trigger("reset");
