@@ -71,6 +71,11 @@ ol.choices-list li.placeholder:before {
   }
 }
 
+.poll-vote-page {
+  background-color: $brand-color-turquoise;
+  height: 100vh;
+}
+
 .vote {
   @include border-radius(10px);
   background-color: $gray-bg;

@@ -9,28 +9,19 @@
         </button>
       </div>
       <section class="modal-body">
-        <section class="preview-html">
-          <!-- TODO: drag & drop jquery code -->
-          <p>Some html code block</p>
-        </section>
-        <section class="add-emails">
-          <!-- Email forms -->
+        <section class="email-containers">
           <form>
-            <article class="form-group email-form-group">
+            <article class="form-inline email-form-group">
               <label for="v-email form-control-label">Email:</label>
-              <div class="v-email-inputs">
-                <input type="email" name="email" class="form-control">
-                <span class="delete-email"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-              </div>
+              <input type="email" name="email" class="form-control email-input">
+              <span class="delete-email"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
             </article>
 
-            <!--Add emails-->
             <span class="add-email"><i class="fa fa-plus" aria-hidden="true"></i></span>
             <div class="clear"></div>
           </form>
         </section>
-      </section>
-
+      
       <section class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Get direct URL</button>

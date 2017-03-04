@@ -1,3 +1,16 @@
+.add-email {
+  @include add-form;
+  padding-right: 12px;
+}
+.delete-email {
+  @include trash-bin-icon;
+}
+
+.form-inline > * {
+   margin: 0 8px;
+}
+
 .preview-html {
   border-bottom: 1px solid #000;
 }
+
