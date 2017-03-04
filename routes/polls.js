@@ -22,9 +22,9 @@ module.exports = (queryHelpers) => {
 
   router.get("/v/:vkey", (req, res) => {
     const visitorKey = req.params.vkey;
-    queryHelpers.selectChoicesTable((choiceResult) => {
+    queryHelpers.selectChoicesTable(visitorKey, (choiceResult) => {
       const choiceData = choiceResult;
-      queryHelpers.selectPollsTable((pollResult) => {
+      queryHelpers.selectPollsTable(visitorKey, (pollResult) => {
         res.render('poll_voter', {choiceData, pollResult})
       });
     });
