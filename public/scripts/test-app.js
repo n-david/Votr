@@ -36,17 +36,53 @@ $(document).ready(function() {
     });
   });
 
-
   //Modal popup on index.ejs
-  $('#modal-preview').on('show.bs.modal', function (event) {
-    const button = $(event.relatedTarget);
+  // $(".modal-container").on('shown.bs.modal', '#modal-preview', function(event) {
+  //   const modal = $(this);
+  //   alert("modal open");
+  //   console.log("modal open");
+  // });
+  // $('#modal-preview').on('show.bs.modal', function (event) {
+  //   const modal = $(this);
+  //   alert("modal open");    
+  // });
+
+  //Modal close
+  $("#modal-preview").on("hidden.bs.modal", function(event) {
+    // $(this).find("form").trigger("reset");
+    alert("modal close");
   });
 
-  //Delete added emails
-  $("email-recipients").on("click", "delete-added-email", function() {
-    $(this).parent().remove();
+  //Delete added emails on index.ejs    
+  $(".email-list").on("click", ".delete-added-email", function(e) {
+      $(this).closest("li").remove();    
   });
 
+  //Add email input on modal 
+  $(".add-email").on("click", function(e) {
+    const emailFormGroup = `<article class="form-inline email-form-group">
+                              <label for="v-email form-control-label">Email:</label>
+                              <input type="email" name="email" class="form-control email-input">
+                            </article>`;
+    $(this).closest(".email-containers").find(".email-form").append(emailFormGroup);
+  });
 
-  
+  $(".add-email-btn").on("click", function(e) {
+    const emailsAdded = [];
+    $(".email-form-group").each(function() {
+      emailsAdded.push($(this).find("input").val());
+    });
+    
+    emailsAdded.forEach((email) => {
+      let emailItem = `<li class="send-to">${email}<span class="delete-added-email"><i class="fa fa-trash-o" aria-hidden="true"></i></span></li>`;
+      $(".email-list").append(emailItem);
+    });
+    
+    //clear extra emailFromGroups & fields
+    $(".email-form article:not(:first)").remove();
+    $(this).closest(".modal-body").find("form").trigger("reset");
+  });
+    
+ 
+
 });
