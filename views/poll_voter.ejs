@@ -30,7 +30,7 @@
           <section class="poll-choices">
             <!-- TODO: Display all choices FROM 'choices' WHERE poll_id = id-->
             <ol class='choices-list'>
-              <% choiceData.forEach((result) => { %>
+              <% choiceResult.forEach((result) => { %>
               <li class='choice' data-description='<%= result.description %>'>
                 <%= result.title %>
               </li>
