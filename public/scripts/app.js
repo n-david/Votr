@@ -1,13 +1,8 @@
-
 $(document).ready(function() {
 
   function createChoiceElement() {
-
-
     const $choiceForm = $("<article>").addClass("form-group choice-form-group");
-
     const $choiceNumber = $("<label>").prepend("Choice: ");
-
     const $div = $("<div>").addClass("choice-inputs");
     const $choiceTextBox = $("<input type='text' name='choice'>").addClass("form-control");
     // const $deleteChoice = $(`
@@ -15,11 +10,9 @@ $(document).ready(function() {
     //     <i class='fa fa-trash-o' aria-hidden='true'></i>
     //   </span>`);
     const $deleteChoice = $("<span>").addClass("delete-choice").html(`<i class="fa fa-trash-o" aria-hidden="true"></i>`);
-
     $deleteChoice.on("click", deleteThis2);
 
     const $describeExpand = $("<small>").addClass("describe-expand").html(`<p>Expand description box</p>`);
-
     $describeExpand.on("click", expand2);
 
     // const $expandedDescription = $("<div>").addClass("choice-describe");
@@ -28,7 +21,7 @@ $(document).ready(function() {
       <label for="choice-description">Description:</label>
       <textarea type="text" name="choice_description" class="form-control" rows="3"></textarea>
       </div>
-      `)
+    `)
 
     //const $labelDescription = $("<label>").text("Description: ");
     //const $descriptionChoice = $("<textarea>").addClass("form-control");

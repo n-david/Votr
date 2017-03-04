@@ -13,12 +13,25 @@ $(document).ready(function() {
 
   //sort ol into array on 'vote button' clicked
   $(".vote-btn").on("click", function(event) {
-    const listOnDom = $(this).closest(".vote").find(".choices-list").children();
-
-    const sortedList = listOnDom.map((item) => {
-      return item.id;
+    const voterName = $(".name-input").val();
+    if (!voterName) {
+      $('.name-input').effect('bounce');
+      $('.status-area').html("Oops you need a name input!").addClass('error').slideDown('slow');
+      return; 
+    }
+    const voteResult = [];
+    $('.choice').each(function(){
+      voteResult.push($(this).data("id"));
     });
-    console.log(sortedList);
+
+    $.ajax({
+      method: 'POST',
+      url: '/poll/v/:vkey',
+      data: {voteResult : voteResult, voterName : voterName},
+      success: function() {
+        console.log("Succes");
+      }
+    });
   });
 
   //Modal popup on index.ejs
