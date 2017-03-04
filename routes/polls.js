@@ -14,9 +14,12 @@ module.exports = (queryHelpers) => {
   });
 
   router.get("/v/id", (req, res) => {
-    queryHelpers.selectChoicesTable((results) => {
-      res.render('poll_voter', {results})
-    })
+    queryHelpers.selectChoicesTable((choiceResult) => {
+      const choiceData = choiceResult;
+      queryHelpers.selectPollsTable((pollResult) => {
+        res.render('poll_voter', {choiceData, pollResult})
+      });
+    });
   });
 
   router.get("/v/success", (req, res) => {
