@@ -54,19 +54,15 @@ $(document).ready(function() {
   // });
 
   $(".add-emails").on("click", function(e) {
-    $(".email-containers").css("display", "block");
+    $(".email-section").css("display", "block");
   });
 
   $("#new-poll").on("click", ".add-email-input", function(e) {
-    const emailFormGroup = `<article class="form-inline email-form-group">
-                              <label for="v-email form-control-label">Email:</label>
-                              <input type="email" name="email" class="form-control email-input">
-                              <span class="delete-email-input"><i class="fa fa-times" aria-hidden="true"></i></span>
-                            </article>`;
-    // const createdEmailSection = '<section class="email-containers">';
-    // $("#new-poll").append(createdEmailForm);
-    // $("#new-poll").find(".email-form").append(emailFormGroup);
-    console.log("hello");
+    const emailFormGroup = `<label for="v-email form-control-label">Email:</label>
+                            <input type="email" name="email" class="form-control email-input">
+                            <span class="delete-email-input"><i class="fa fa-times" aria-hidden="true"></i></span>`;
+
+    $("<article>", {class : "email-form-group form-inline"}).append(emailFormGroup).appendTo(".email-container");          
   });
 
   //Delete added emails on index.ejs    
