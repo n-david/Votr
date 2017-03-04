@@ -22,7 +22,6 @@ $(document).ready(function() {
 
     $describeExpand.on("click", expand2);
 
-
     // const $expandedDescription = $("<div>").addClass("choice-describe");
     const $expandedDescription = $(`
       <div class="choice-describe">
@@ -38,20 +37,16 @@ $(document).ready(function() {
     //$expandedDescription.append($labelDescription, $descriptionChoice);
 
     $choiceForm.append($choiceNumber, $div, $describeExpand, $expandedDescription);
-
-
     return $choiceForm;
   }
 
   $('.fa-plus').on('click', function() {
-    console.log("click");
     createChoiceElement().appendTo($('.choice-container-created'));
     // expand();
   });
 
   function expand() {
     $(".describe-expand").on("click", function() {
-    console.log("click");
     //const $descriptionBox = $();
     $(this).siblings('.choice-describe').slideToggle('fast');
     })
@@ -59,11 +54,9 @@ $(document).ready(function() {
 
   function expand2(){
       // $(".describe-expand2").on("click", function() {
-    console.log("click");
     $(this).siblings('.choice-describe').slideToggle('fast');
     // })
   }
-
   expand();
 
   function deleteThis() {
@@ -75,7 +68,5 @@ $(document).ready(function() {
   function deleteThis2() {
       $(this.closest("article")).remove();
   }
-
   deleteThis();
-
 });
