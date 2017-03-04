@@ -31,13 +31,13 @@
             <!-- TODO: Display all choices FROM 'choices' WHERE poll_id = id-->
             <ol class='choices-list'>
               <% choiceData.forEach((result) => { %>
-              <li class='choice' data-description='<%= result.description %>'>
+              <li class='choice' data-description='<%= result.description %>' data-id="<%= result.id %>">
                 <%= result.title %>
               </li>
               <% }); %>
             </ol>
           </section>
-           <button class="vote-btn btn btn-primary">Vote!</button>
+          <button class="vote-btn btn btn-primary">Vote!</button>
         </section>
         <aside class="choice-info-block col-md-3">
             <h2></h2>

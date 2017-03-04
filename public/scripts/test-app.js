@@ -9,8 +9,16 @@ $(document).ready(function() {
     sidebar.find("h2").html(choiceTitle);
     sidebar.find("p").html(choiceDescription);
 
-    
-    
+  });
+
+  //sort ol into array on 'vote button' clicked
+  $(".vote-btn").on("click", function(event) {
+    const listOnDom = $(this).closest(".vote").find(".choices-list").children();
+
+    const sortedList = listOnDom.map((item) => {
+      return item.id;
+    });
+    console.log(sortedList);
   });
 
   //Modal popup on index.ejs
