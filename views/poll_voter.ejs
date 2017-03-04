@@ -32,7 +32,8 @@
             <!-- TODO: Display all choices FROM 'choices' WHERE poll_id = id-->
             <ol class='choices-list'>
               <% choiceResult.forEach((result) => { %>
-              <li class='choice' data-description='<%= result.description %>'>
+              <li class='choice' data-description='<%=
+              result.description %>' data-id="<%= result.id %>">
                 <%= result.title %>
               </li>
               <% }); %>

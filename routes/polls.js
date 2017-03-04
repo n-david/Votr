@@ -8,6 +8,10 @@ module.exports = (queryHelpers) => {
   router.get("/a/:akey", (req, res) => {
     const adminKey = req.params.akey;
     queryHelpers.selectPollsTableAdminKey(adminKey, (resultTitle) => {
+      // queryHelpers.getRanks(adminKey, (resultRanks) => {
+      //   console.log(resultRanks);
+      //   res.render("poll_admin", {resultTitle, resultRanks});
+      // })
       res.render("poll_admin", {resultTitle});
     });
   });
@@ -47,14 +51,13 @@ module.exports = (queryHelpers) => {
 
   router.post("/v/:vkey", (req, res) => {
     const voteResult = req.body.voteResult;
-    console.log(voteResult);
     const voterName = req.body.voterName;
 
     queryHelpers.insertVotersTable(voterName, (voter_id) => {
       voteResult.forEach((choiceId, index) => {
         const choiceIdNum = Number(choiceId);
         queryHelpers.insertResultsTable(choiceIdNum, index, voter_id, () => {
-          res.send("vote submitted");
+          // res.send("vote submitted");
         });
       });
     });
