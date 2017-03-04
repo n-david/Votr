@@ -4,77 +4,78 @@
     <title>Votr App</title>
     <%- include('partials/_head')%>
 
-    <!-- TEST CSS/JS partial -->
-    <%- include('partials/_test')%>
+   
 
   </head>
 
   <body>
     <%- include('partials/_nav')%>
-    <section class="container">
-      <section class="create-poll">
-        <form action="/" method="POST">
-          <article class="form-group" >
-            <label for="email">Email:</label>
-            <input type="email" name="email" class="form-control">
-          </article>
-          <article class="form-group">
-            <label for="title">Title:</label>
-            <input type="text" name="title" class="form-control">
-          </article>
-          <article class="form-group">
-            <label for="poll_description">Description:</label>
-            <textarea type="text" name="description" class="form-control" rows="3"></textarea>
-          </article>
-          <!--Choices: 2 predefined-->
-        <div class="choice-container">
-          <article class="form-group choice-form-group">
-            <label for="choice">Choice: </label>
-            <div class="choice-inputs">
-              <input type="text" name="choice" class="form-control">
-              <span class="delete-choice"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-            </div>
-            <small class="describe-expand" class="form-text text-muted"><p>Expand description box</p></small>
-            <div class="choice-describe">
-              <label for="choice-description">Description:</label>
-              <textarea type="text" name="choice_description" class="form-control" rows="3"></textarea>
-            </div>
-          </article>
-          <article class="form-group choice-form-group">
-            <label for="choice">Choice: </label>
-            <div class="choice-inputs">
-              <input type="text" name="choice" class="form-control">
-              <span class="delete-choice"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-            </div>
-            <small class="describe-expand" class="form-text text-muted"><p>Expand description box</p></small>
-            <div class="choice-describe">
-              <label for="choice-description">Description:</label>
-              <textarea type="text" name="choice_description" class="form-control" rows="3"></textarea>
-            </div>
-          </article>
-        </div>
-          <!--TODO: Choices: Render added choices-->
-          <div class="choice-container-created"></div>
-          <!--Add choices-->
-          <span class="add-choice"><i class="fa fa-plus" aria-hidden="true"></i></span>
-          <div class="clear"></div>
-          <!--Options & submit-->
-          <div class="form-check">
-            <label class="form-check-label">
-              <input type="checkbox" class="form-check-input">Enable anonymous voters
-            </label>
+    <section class="container-fluid index">
+        <section class="create-poll">
+          <form action="/" method="POST">
+            <article class="form-group" >
+              <label for="email">Email:</label>
+              <input type="email" name="email" class="form-control">
+            </article>
+            <article class="form-group">
+              <label for="title">Poll Title:</label>
+              <input type="text" name="title" class="form-control">
+            </article>
+            <article class="form-group">
+              <label for="poll_description">Poll Description:</label>
+              <textarea type="text" name="description" class="form-control" rows="3"></textarea>
+            </article>
+            <!--Choices: 2 predefined-->
+          <div class="choice-container">
+            <article class="form-group choice-form-group">
+              <label for="choice">Choice: </label>
+              <div class="choice-inputs">
+                <input type="text" name="choice" class="form-control">
+                <span class="delete-choice"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+              </div>
+              <small class="describe-expand" class="form-text text-muted"><p>Expand description box</p></small>
+              <div class="choice-describe">
+                <label for="choice-description">Description:</label>
+                <textarea type="text" name="choice_description" class="form-control" rows="3"></textarea>
+              </div>
+            </article>
+            <article class="form-group choice-form-group">
+              <label for="choice">Choice: </label>
+              <div class="choice-inputs">
+                <input type="text" name="choice" class="form-control">
+                <span class="delete-choice"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+              </div>
+              <small class="describe-expand" class="form-text text-muted"><p>Expand description box</p></small>
+              <div class="choice-describe">
+                <label for="choice-description">Description:</label>
+                <textarea type="text" name="choice_description" class="form-control" rows="3"></textarea>
+              </div>
+            </article>
           </div>
-          <input type="submit" class="btn btn-primary">Create new poll!</input>
-          <button type="button" class="preview-poll btn btn-outline-success" data-toggle="modal" data-target="#modal-preview" data-whatever="@mdo">Preview</button>
-        </form>
+            <!--TODO: Choices: Render added choices-->
+            <div class="choice-container-created"></div>
+            <!--Add choices-->
+            <span class="add-choice"><i class="fa fa-plus" aria-hidden="true"></i></span>
+            <div class="clear"></div>
+            <!--Options & submit-->
+            <!--<div class="form-check">
+              <label class="form-check-label">
+                <input type="checkbox" class="form-check-input">Enable anonymous voters
+              </label>
+            </div>-->
+            <div class="create-poll-actions">
+              <button type="button" class="preview-poll btn btn-outline-success" data-toggle="modal" data-target="#modal-preview" data-whatever="@mdo">Preview</button>
+              <input type="submit" class="btn btn-primary">     
+            </div>        
+          </form>
 
-      </section>
+        </section>
 
-      <section class="modal-container">
-          <!--TODO: include partials/_modal-preview-->
-          <%- include('partials/_modal_preview')%>
-      </section>
-
-  </section>
+        <section class="modal-container">
+            <!--TODO: include partials/_modal-preview-->
+            <%- include('partials/_modal_preview')%>
+        </section>
+     
+    </section>
   </body>
 </html>

@@ -22,9 +22,9 @@ module.exports = (queryHelpers) => {
 
   router.get("/v/:vkey", (req, res) => {
     const visitorKey = req.params.vkey;
-    queryHelpers.selectChoicesTable((choiceResult) => {
+    queryHelpers.selectChoicesTable(visitorKey, (choiceResult) => {
       const choiceData = choiceResult;
-      queryHelpers.selectPollsTable((pollResult) => {
+      queryHelpers.selectPollsTable(visitorKey, (pollResult) => {
         res.render('poll_voter', {choiceData, pollResult})
       });
     });
@@ -41,6 +41,21 @@ module.exports = (queryHelpers) => {
   router.get("/all/", (req, res) => {
     queryHelpers.getAllPolls((allPolls) => {
       res.json(allPolls);
+    });
+  });
+
+  router.post("/v/:vkey", (req, res) => {
+    const voteResult = req.body.voteResult;
+    console.log(voteResult);
+    const voterName = req.body.voterName;
+
+    queryHelpers.insertVotersTable(voterName, (voter_id) => {
+      voteResult.forEach((choiceId, index) => {
+        const choiceIdNum = Number(choiceId);
+        queryHelpers.insertResultsTable(choiceIdNum, index, voter_id, () => {
+          res.send("vote submitted");
+        });
+      });
     });
   });
 
