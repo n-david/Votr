@@ -14,9 +14,10 @@ module.exports = (queryHelpers) => {
   });
 
   router.get("/v/id", (req, res) => {
-    res.render("poll_voter");
+    queryHelpers.selectChoicesTable((results) => {
+      res.render('poll_voter', {results})
+    })
   });
-
 
   router.get("/v/success", (req, res) => {
     res.render("success_votepoll");
@@ -31,15 +32,6 @@ module.exports = (queryHelpers) => {
       res.json(allPolls);
     });
   });
-
-  // router.get("/", (req, res) => {
-  //   knex
-  //     .select("*")
-  //     .from("users")
-  //     .then((results) => {
-  //       res.json(results);
-  //   });
-  // });
 
   return router;
 }
