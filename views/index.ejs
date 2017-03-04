@@ -12,18 +12,18 @@
     <%- include('partials/_nav')%>
     <section class="container-fluid index">
         <section class="create-poll">
-          <form action="/" method="POST">
+          <form id="new-poll" action="/" method="POST">
             <article class="form-group" >
               <label for="email">Email:</label>
-              <input type="email" name="email" class="form-control">
+              <input type="email" name="email" class="user-email-input form-control">
             </article>
             <article class="form-group">
               <label for="title">Poll Title:</label>
-              <input type="text" name="title" class="form-control">
+              <input type="text" name="title" class="poll-title-input form-control">
             </article>
             <article class="form-group">
               <label for="poll_description">Poll Description:</label>
-              <textarea type="text" name="description" class="form-control" rows="3"></textarea>
+              <textarea type="text" name="description" class="poll-description-input form-control" rows="3"></textarea>
             </article>
             <!--Choices: 2 predefined-->
           <div class="choice-container">
@@ -52,19 +52,23 @@
               </div>
             </article>
           </div>
-            <!--TODO: Choices: Render added choices-->
             <div class="choice-container-created"></div>
             <!--Add choices-->
             <span class="add-choice"><i class="fa fa-plus" aria-hidden="true"></i></span>
             <div class="clear"></div>
-            <!--Options & submit-->
-            <!--<div class="form-check">
-              <label class="form-check-label">
-                <input type="checkbox" class="form-check-input">Enable anonymous voters
-              </label>
-            </div>-->
+            
+            <div class="email-recipients">
+              <span>Send email to: </span>
+              <ul class="email-list">
+                <li class="send-to">abc@123.com <span class="delete-added-email"><i class="fa fa-trash-o" aria-hidden="true"></i></span></li>
+                <li class="send-to">abc@123.com</li>
+                <li class="send-to">abc@123.com</li>
+                <li class="send-to">abc@123.com</li>
+                <li class="send-to">abc@123.com</li>
+              </ul>
+            </div>
             <div class="create-poll-actions">
-              <button type="button" class="preview-poll btn btn-outline-success" data-toggle="modal" data-target="#modal-preview" data-whatever="@mdo">Preview</button>
+              <button type="button" class="preview-poll btn btn-outline-success" data-toggle="modal" data-target="#modal-preview" data-whatever="@mdo">Add emails</button>
               <input type="submit" class="btn btn-primary">     
             </div>        
           </form>

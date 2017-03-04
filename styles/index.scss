@@ -1,9 +1,23 @@
+.create-poll * {
+  font-family: $content-font;
+}
 .add-choice {
   @include add-form;
 }
 
 .delete-choice {
   @include trash-bin-icon;
+}
+
+.delete-added-email {
+  @include trash-bin-icon;
+  color: #4a4a4a;
+  font-size: 0.8em;
+  margin-left: 10px;
+  &:hover {
+    color: $brand-color-red;
+    font-size: 1em;
+  }
 }
 
 .choice-inputs {
