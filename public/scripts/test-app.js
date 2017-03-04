@@ -9,4 +9,6 @@ $(document).ready(function() {
     sidebar.find("p").html(choiceDescription);
     
   });
+
+  
 });
