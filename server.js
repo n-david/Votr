@@ -12,6 +12,7 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 
 // Seperated Routes for each Resource
@@ -19,7 +20,7 @@ const path = require('path');
 const queryHelpers = require("./lib/query-helpers")(knex);
 const pollRoutes = require("./routes/polls")(queryHelpers);
 const mailgun     = require("./lib/mailgun");
-const makeKey = require("./lib/util/get-link");
+const makeLink = require("./lib/util/get-link");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -31,6 +32,7 @@ if (ENV === "development") {
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 //node-sass
 app.use(sass({
@@ -50,12 +52,13 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
+  const userEmail = req.body.email;
   const pollData = {
-    email: req.body.email,
+    email: userEmail,
     title: req.body.title,
     description: req.body.description,
-    admin_key: makeKey(),
-    voter_key: makeKey(),
+    admin_key: makeLink.generateRandomString(),
+    voter_key: makeLink.generateRandomString(),
     date_created: new Date(),
     active: true
   };
@@ -70,11 +73,16 @@ app.post("/", (req, res) => {
       queryHelpers.insertChoicesTable(choiceData)
     }
   });
+  const adminLink = makeLink.makeAdminLink(pollData.admin_key);
+  const voterLink = makeLink.makeVoterLink(pollData.voter_key);
 
-  res.redirect("poll/a/success");
-
+  // const queryString = encodeURIComponent(`email=${userEmail}&visitorkey=${pollData.voter_key}`)
+  res
   //Send links to mailgun
-  mailgun(req.body.email);
+  mailgun(userEmail, adminLink, voterLink);
+  res.cookie("email", userEmail, {maxAge: 3600000});
+  res.cookie("voter", pollData.voter_key, {maxAge: 3600000});
+  res.redirect(`poll/a/${pollData.admin_key}/success`);
 
 });
 
