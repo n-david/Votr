@@ -5,7 +5,7 @@ $(document).ready(function() {
     const choiceTitle = $(this).html();
     const choiceDescription = $(this).data("description");
     const sidebar = $(this).closest(".voter-info").find(".choice-info-block");
-    
+
     sidebar.find("h2").html(choiceTitle);
     sidebar.find("p").html(choiceDescription);
 
@@ -17,7 +17,7 @@ $(document).ready(function() {
     if (!voterName) {
       $('.name-input').effect('bounce');
       $('.status-area').html("Oops you need a name input!").addClass('error').slideDown('slow');
-      return; 
+      return;
     }
     const voteResult = [];
     $('.choice').each(function(){
@@ -30,7 +30,7 @@ $(document).ready(function() {
       data: {voteResult : voteResult, voterName : voterName},
       success: function() {
         console.log("Succes");
-        //TODO: display modal success 
+        //TODO: display modal success
         //TODO: disable vote button
       }
     });
@@ -47,5 +47,5 @@ $(document).ready(function() {
     // modal.find('.modal-body input').val(recipient)
   });
 
-  
+
 });

@@ -7,7 +7,13 @@ module.exports = (queryHelpers) => {
   //All routes that prefixes with /polls/ go here
   router.get("/a/:akey", (req, res) => {
     const adminKey = req.params.akey;
-    res.render("poll_admin");
+    queryHelpers.selectPollsTableAdminKey(adminKey, (resultTitle) => {
+      // queryHelpers.getRanks(adminKey, (resultRanks) => {
+      //   console.log(resultRanks);
+      //   res.render("poll_admin", {resultTitle, resultRanks});
+      // })
+      res.render("poll_admin", {resultTitle});
+    });
   });
 
   router.get("/a/:akey/success", (req, res) => {
@@ -23,9 +29,8 @@ module.exports = (queryHelpers) => {
   router.get("/v/:vkey", (req, res) => {
     const visitorKey = req.params.vkey;
     queryHelpers.selectChoicesTable(visitorKey, (choiceResult) => {
-      const choiceData = choiceResult;
       queryHelpers.selectPollsTable(visitorKey, (pollResult) => {
-        res.render('poll_voter', {choiceData, pollResult})
+        res.render('poll_voter', {choiceResult, pollResult})
       });
     });
   });
@@ -46,14 +51,13 @@ module.exports = (queryHelpers) => {
 
   router.post("/v/:vkey", (req, res) => {
     const voteResult = req.body.voteResult;
-    console.log(voteResult);
     const voterName = req.body.voterName;
 
     queryHelpers.insertVotersTable(voterName, (voter_id) => {
       voteResult.forEach((choiceId, index) => {
         const choiceIdNum = Number(choiceId);
         queryHelpers.insertResultsTable(choiceIdNum, index, voter_id, () => {
-          res.send("vote submitted");
+          // res.send("vote submitted");
         });
       });
     });

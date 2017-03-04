@@ -8,7 +8,7 @@
     <!--<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
     <!--<script src="https://code.jquery.com/jquery-1.12.4.js"></script>-->
     <!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
-    
+
     <script type="text/javascript" src="/vendor/jquery-sortable.js"></script>
     <script type="text/javascript" src="/scripts/draggable.js"></script>
     <script type="text/javascript" src="/scripts/test-app.js"></script>
@@ -31,8 +31,9 @@
           <section class="poll-choices">
             <!-- TODO: Display all choices FROM 'choices' WHERE poll_id = id-->
             <ol class='choices-list'>
-              <% choiceData.forEach((result) => { %>
-              <li class='choice' data-description='<%= result.description %>' data-id="<%= result.id %>">
+              <% choiceResult.forEach((result) => { %>
+              <li class='choice' data-description='<%=
+              result.description %>' data-id="<%= result.id %>">
                 <%= result.title %>
               </li>
               <% }); %>
@@ -43,8 +44,8 @@
             <div class="name-input-box">
               <input type="text" name="voter_name" class="name-input form-control">
             </div>
-            <button class="vote-btn btn btn-primary">Vote!</button>         
-            <div class="status-area"></div>     
+            <button class="vote-btn btn btn-primary">Vote!</button>
+            <div class="status-area"></div>
 
           </section>
         </section>
