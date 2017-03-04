@@ -79,7 +79,9 @@ app.post("/", (req, res) => {
   // const queryString = encodeURIComponent(`email=${userEmail}&visitorkey=${pollData.voter_key}`)
   res
   //Send links to mailgun
-  mailgun(userEmail, adminLink, voterLink);
+  mailgun.sendAdminEmail(userEmail, adminLink, voterLink);
+  mailgun.sendVotersEmail(votersEmail, voterLink);
+  
   res.cookie("email", userEmail, {maxAge: 3600000});
   res.cookie("voter", pollData.voter_key, {maxAge: 3600000});
   res.redirect(`poll/a/${pollData.admin_key}/success`);

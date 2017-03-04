@@ -48,22 +48,38 @@ $(document).ready(function() {
   // });
 
   //Modal close
-  $("#modal-preview").on("hidden.bs.modal", function(event) {
-    // $(this).find("form").trigger("reset");
-    alert("modal close");
+  // $("#modal-preview").on("hidden.bs.modal", function(event) {
+  //   // $(this).find("form").trigger("reset");
+  //   alert("modal close");
+  // });
+
+  $(".add-emails").on("click", function(e) {
+    $(".email-containers").css("display", "block");
+  });
+
+  $("#new-poll").on("click", ".add-email-input", function(e) {
+    const emailFormGroup = `<article class="form-inline email-form-group">
+                              <label for="v-email form-control-label">Email:</label>
+                              <input type="email" name="email" class="form-control email-input">
+                              <span class="delete-email-input"><i class="fa fa-times" aria-hidden="true"></i></span>
+                            </article>`;
+    // const createdEmailSection = '<section class="email-containers">';
+    // $("#new-poll").append(createdEmailForm);
+    // $("#new-poll").find(".email-form").append(emailFormGroup);
+    console.log("hello");
   });
 
   //Delete added emails on index.ejs    
-  $(".email-list").on("click", ".delete-added-email", function(e) {
-      $(this).closest("li").remove();    
-  });
+  // $(".email-list").on("click", ".delete-added-email", function(e) {
+  //     $(this).closest("li").remove();    
+  // });
 
   $(".email-form").on("click", ".delete-email-input", function(e) {
     $(this).closest("article").remove();
   });
 
   //Add email input on modal 
-  $(".add-email").on("click", function(e) {
+  $(".add-email-input").on("click", function(e) {
     const emailFormGroup = `<article class="form-inline email-form-group">
                               <label for="v-email form-control-label">Email:</label>
                               <input type="email" name="email" class="form-control email-input">
@@ -72,22 +88,25 @@ $(document).ready(function() {
     $(this).closest(".email-containers").find(".email-form").append(emailFormGroup);
   });
 
-  $(".add-email-btn").on("click", function(e) {
-    const emailsAdded = [];
-    $(".email-form-group").each(function() {
-      emailsAdded.push($(this).find("input").val());
-    });
-    
-    emailsAdded.forEach((email) => {
-      let emailItem = `<li class="send-to">${email}<span class="delete-added-email"><i class="fa fa-trash-o" aria-hidden="true"></i></span></li>`;
-      $(".email-list").append(emailItem);
-    });
+  //Add email inputs to index.ejs
+  // $(".add-email-btn").on("click", function(e) {
+  //   const emailsAdded = [];
+  //   $(".email-form-group").each(function() {
+  //     emailsAdded.push($(this).find("input").val());
+  //   });
+
+  //   //Ajax submit both emails & poll data
+  //   $("#new-poll").submit();
+    /*<span class="delete-added-email"><i class="fa fa-trash-o" aria-hidden="true"></i></span></li>*/
+    // const emailInput = `<article class="form-inline email-form-group"><input class="send-to" type="email" name="voter_email"><span class="delete-email-input"><i class="fa fa-times" aria-hidden="true"></i></span></article>`;
+    // emailsAdded.forEach((email) => {
+    //   $(".email-list").append(emailInput);
+
+    //   // emailInput.val(email);
+    // });
 
     //clear extra emailFromGroups & fields
-    $(".email-form article:not(:first)").remove();
-    $(this).closest(".modal-body").find("form").trigger("reset");
+    // $(".email-form article:not(:first)").remove();
+    // $(this).closest(".modal-body").find("form").trigger("reset");
   });
     
- 
-
-});

@@ -26,56 +26,58 @@
               <textarea type="text" name="description" class="poll-description-input form-control" rows="3"></textarea>
             </article>
             <!--Choices: 2 predefined-->
-          <div class="choice-container">
-            <article class="form-group choice-form-group">
-              <label for="choice">Choice: </label>
-              <div class="choice-inputs">
-                <input type="text" name="choice" class="form-control">
-                <span class="delete-choice"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-              </div>
-              <small class="describe-expand" class="form-text text-muted"><p>Expand description box</p></small>
-              <div class="choice-describe">
-                <label for="choice-description">Description:</label>
-                <textarea type="text" name="choice_description" class="form-control" rows="3"></textarea>
-              </div>
-            </article>
-            <article class="form-group choice-form-group">
-              <label for="choice">Choice: </label>
-              <div class="choice-inputs">
-                <input type="text" name="choice" class="form-control">
-                <span class="delete-choice"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
-              </div>
-              <small class="describe-expand" class="form-text text-muted"><p>Expand description box</p></small>
-              <div class="choice-describe">
-                <label for="choice-description">Description:</label>
-                <textarea type="text" name="choice_description" class="form-control" rows="3"></textarea>
-              </div>
-            </article>
-          </div>
+            <div class="choice-container">
+              <article class="form-group choice-form-group">
+                <label for="choice">Choice: </label>
+                <div class="choice-inputs">
+                  <input type="text" name="choice" class="form-control">
+                  <span class="delete-choice"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+                </div>
+                <small class="describe-expand" class="form-text text-muted"><p>Expand description box</p></small>
+                <div class="choice-describe">
+                  <label for="choice-description">Description:</label>
+                  <textarea type="text" name="choice_description" class="form-control" rows="3"></textarea>
+                </div>
+              </article>
+              <article class="form-group choice-form-group">
+                <label for="choice">Choice: </label>
+                <div class="choice-inputs">
+                  <input type="text" name="choice" class="form-control">
+                  <span class="delete-choice"><i class="fa fa-trash-o" aria-hidden="true"></i></span>
+                </div>
+                <small class="describe-expand" class="form-text text-muted"><p>Expand description box</p></small>
+                <div class="choice-describe">
+                  <label for="choice-description">Description:</label>
+                  <textarea type="text" name="choice_description" class="form-control" rows="3"></textarea>
+                </div>
+              </article>
+            </div>
             <div class="choice-container-created"></div>
             <!--Add choices-->
             <span class="add-choice"><i class="fa fa-plus" aria-hidden="true"></i></span>
             <div class="clear"></div>
-            
-            <div class="email-recipients">
+      
+            <section class="email-containers">
               <span>Send email to: </span>
-              <ul class="email-list">
-                <li class="send-to">abc@123.com <span class="delete-added-email"><i class="fa fa-trash-o" aria-hidden="true"></i></span></li>
-              </ul>
-            </div>
+                <article class="form-inline email-form-group">
+                  <label for="v-email form-control-label">Email:</label>
+                  <input type="email" name="email" class="form-control email-input">
+                  <span class="delete-email-input"><i class="fa fa-times" aria-hidden="true"></i></span>
+                </article>
+              <span class="add-email-input"><i class="fa fa-plus" aria-hidden="true"></i></span>
+              <div class="clear"></div>
+            </section>
             <div class="create-poll-actions">
-              <button type="button" class="preview-poll btn btn-outline-success" data-toggle="modal" data-target="#modal-preview" data-whatever="@mdo">Add emails</button>
-              <input type="submit" class="btn btn-primary">     
-            </div>        
+              <button type="button" class="add-emails btn btn-outline-success">Add emails</button>
+              <button type="submit" class="btn btn-primary">Get Direct URL only</button>
+            </div>    
           </form>
 
         </section>
 
-        <section class="modal-container">
-            <!--TODO: include partials/_modal-preview-->
-            <%- include('partials/_modal_preview')%>
-        </section>
-     
+    
+
+        <!--<section class="modal-container"></section>-->
     </section>
   </body>
 </html>
