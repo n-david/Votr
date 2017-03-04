@@ -30,6 +30,8 @@ $(document).ready(function() {
       data: {voteResult : voteResult, voterName : voterName},
       success: function() {
         console.log("Succes");
+        //TODO: display modal success 
+        //TODO: disable vote button
       }
     });
   });
