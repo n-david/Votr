@@ -18,8 +18,8 @@ const cookieParser = require('cookie-parser');
 // Seperated Routes for each Resource
 //const usersRoutes = require("./routes/users");
 const queryHelpers = require("./lib/query-helpers")(knex);
-const pollRoutes = require("./routes/polls")(queryHelpers);
 const mailgun     = require("./lib/mailgun");
+const pollRoutes = require("./routes/polls")(queryHelpers, mailgun);
 const makeLink = require("./lib/util/get-link");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT

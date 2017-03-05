@@ -59,18 +59,21 @@ module.exports = (queryHelpers, mailgun) => {
     const voterName = req.body.voterName;
     const poll_id = req.body.poll_id;
 
-    queryHelpers.insertVotersTable(voterName, poll_id, (voter_id) => {
-      voteResult.forEach((choiceId, index) => {
-        const choiceIdNum = Number(choiceId);
-        queryHelpers.insertResultsTable(choiceIdNum, index, voter_id, () => {
-          // queryHelpers.selectPollsTableById(poll_id, (pollData) => {
-          //   mailgun.sendAdminResults(pollData.email);
-            res.send("vote submitted");
-          // });
+    queryHelpers. selectUsersTableByPollId(poll_id, (userData) => {
+      mailgun.sendAdminResults(userData.email);
+    });
+
+      queryHelpers.insertVotersTable(voterName, poll_id, (voter_id) => {
+        voteResult.forEach((choiceId, index) => {
+          const choiceIdNum = Number(choiceId);
+          queryHelpers.insertResultsTable(choiceIdNum, index, voter_id, () => {
+              res.end("vote submitted");
+          });
         });
       });
     });
-  });
+
+  
 
   return router;
 }
