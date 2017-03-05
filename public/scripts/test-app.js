@@ -24,10 +24,12 @@ $(document).ready(function() {
       voteResult.push($(this).data("id"));
     });
 
+    const reverseResult = voteResult.reverse();
+
     $.ajax({
       method: 'POST',
       url: '/poll/v/:vkey',
-      data: {voteResult : voteResult, voterName : voterName},
+      data: {voteResult : reverseResult, voterName : voterName},
       success: function() {
         console.log("Succes");
         //TODO: display modal success
