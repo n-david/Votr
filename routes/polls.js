@@ -72,8 +72,5 @@ module.exports = (queryHelpers, mailgun) => {
         });
       });
     });
-
-  
-
   return router;
 }
