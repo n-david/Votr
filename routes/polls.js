@@ -1,27 +1,51 @@
 const express = require('express');
 const router  = express.Router();
 
+
 module.exports = (queryHelpers) => {
 
   //All routes that prefixes with /polls/ go here
-  router.get("/a/id", (req, res) => {
-    res.render("poll_admin");
+  router.get("/a/:akey", (req, res) => {
+    const adminKey = req.params.akey;
+    queryHelpers.selectPollsTableAdminKey(adminKey, (resultTitle) => {
+      queryHelpers.getRanks(adminKey, (resultRanks) => {
+        let winner = resultRanks[0].title;
+        for (let i = 0; i < resultRanks.length - 1; i++) {
+          if (resultRanks[i].sum < resultRanks[i + 1].sum) {
+            winner = resultRanks[i + 1].title;
+          }
+        }
+        queryHelpers.getVoter(adminKey, (resultVoter) => {
+          res.render("poll_admin", {resultTitle, winner, resultVoter});
+        })
+      });
+    });
   });
 
-  router.get("/a/success", (req, res) => {
-    res.render("success_newpoll");
+  router.get("/a/:akey/success", (req, res) => {
+
+    const userData = {
+      userEmail : req.cookies.email,
+      voterKey : req.cookies.voter,
+      adminKey : req.params.akey
+    }
+    res.render("success_newpoll", userData);
   });
 
-  router.get("/v/id", (req, res) => {
-    res.render("poll_voter");
+  router.get("/v/:vkey", (req, res) => {
+    const visitorKey = req.params.vkey;
+    queryHelpers.selectChoicesTable(visitorKey, (choiceResult) => {
+      queryHelpers.selectPollsTable(visitorKey, (pollResult) => {
+        res.render('poll_voter', {choiceResult, pollResult})
+      });
+    });
   });
 
-
-  router.get("/v/success", (req, res) => {
+  router.get("/v/:vkey/success", (req, res) => {
     res.render("success_votepoll");
   });
 
-  router.get("/v/error", (req, res) => {
+  router.get("/v/:vkey/error", (req, res) => {
     res.render("already_voted");
   });
 
@@ -31,14 +55,21 @@ module.exports = (queryHelpers) => {
     });
   });
 
-  // router.get("/", (req, res) => {
-  //   knex
-  //     .select("*")
-  //     .from("users")
-  //     .then((results) => {
-  //       res.json(results);
-  //   });
-  // });
+  router.post("/v/:vkey", (req, res) => {
+    const voteResult = req.body.voteResult;
+    const voterName = req.body.voterName;
+    const poll_id = req.body.poll_id;
+    console.log(poll_id, 'where is this');
+
+    queryHelpers.insertVotersTable(voterName, poll_id, (voter_id) => {
+      voteResult.forEach((choiceId, index) => {
+        const choiceIdNum = Number(choiceId);
+        queryHelpers.insertResultsTable(choiceIdNum, index, voter_id, () => {
+          // res.send("vote submitted");
+        });
+      });
+    });
+  });
 
   return router;
 }
