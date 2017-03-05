@@ -9,11 +9,15 @@ module.exports = (queryHelpers) => {
     const adminKey = req.params.akey;
     queryHelpers.selectPollsTableAdminKey(adminKey, (resultTitle) => {
       queryHelpers.getRanks(adminKey, (resultRanks) => {
-        console.log(resultRanks);
-        resultRanks.forEach((item) => {
-          console.log(item.title, item.sum);
-          res.render("poll_admin", {resultTitle, resultRanks});
-        });
+        let winner = resultRanks[0].title;
+        for (let i = 0; i < resultRanks.length - 1; i++) {
+          if (resultRanks[i].sum < resultRanks[i + 1].sum) {
+            winner = resultRanks[i + 1].title;
+          }
+        }
+        queryHelpers.getVoter(adminKey, (resultVoter) => {
+          res.render("poll_admin", {resultTitle, winner, resultVoter});
+        })
       });
     });
   });
@@ -54,8 +58,10 @@ module.exports = (queryHelpers) => {
   router.post("/v/:vkey", (req, res) => {
     const voteResult = req.body.voteResult;
     const voterName = req.body.voterName;
+    const poll_id = req.body.poll_id;
+    console.log(poll_id, 'where is this');
 
-    queryHelpers.insertVotersTable(voterName, (voter_id) => {
+    queryHelpers.insertVotersTable(voterName, poll_id, (voter_id) => {
       voteResult.forEach((choiceId, index) => {
         const choiceIdNum = Number(choiceId);
         queryHelpers.insertResultsTable(choiceIdNum, index, voter_id, () => {

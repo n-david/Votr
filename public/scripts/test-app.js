@@ -25,11 +25,13 @@ $(document).ready(function() {
     });
 
     const reverseResult = voteResult.reverse();
+    const poll_id = $(".poll-id").html();
+
 
     $.ajax({
       method: 'POST',
       url: '/poll/v/:vkey',
-      data: {voteResult : reverseResult, voterName : voterName},
+      data: {voteResult : reverseResult, voterName : voterName, poll_id : poll_id},
       success: function() {
         console.log("Succes");
         //TODO: display modal success
