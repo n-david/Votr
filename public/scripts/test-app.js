@@ -59,20 +59,24 @@ $(document).ready(function() {
 
   $("#new-poll").on("click", ".add-email-input", function(e) {
     const emailFormGroup = `<label for="v-email form-control-label">Email:</label>
-                            <input type="email" name="email" class="form-control email-input">
+                            <input type="email" name="v_email" class="form-control email-input">
                             <span class="delete-email-input"><i class="fa fa-times" aria-hidden="true"></i></span>`;
 
     $("<article>", {class : "email-form-group form-inline"}).append(emailFormGroup).appendTo(".email-container");          
   });
 
   //Delete added emails on index.ejs    
+   $("#new-poll").on("click", ".delete-email-input", function(e) {
+     $(this).closest("article").remove();
+   });
+
   // $(".email-list").on("click", ".delete-added-email", function(e) {
   //     $(this).closest("li").remove();    
   // });
 
-  $(".email-form").on("click", ".delete-email-input", function(e) {
-    $(this).closest("article").remove();
-  });
+  // $(".email-form").on("click", ".delete-email-input", function(e) {
+  //   $(this).closest("article").remove();
+  // });
 
   //Add email input on modal 
   $(".add-email-input").on("click", function(e) {

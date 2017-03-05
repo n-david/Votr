@@ -52,7 +52,10 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  const userEmail = req.body.email;
+  const userEmail = req.body.a_email;
+  const votersEmails = req.body.v_email;
+  console.log(votersEmails);
+
   const pollData = {
     email: userEmail,
     title: req.body.title,
@@ -72,15 +75,17 @@ app.post("/", (req, res) => {
       }
       queryHelpers.insertChoicesTable(choiceData)
     }
+    //for each voter, insert into Voters Table with poll_id
   });
   const adminLink = makeLink.makeAdminLink(pollData.admin_key);
   const voterLink = makeLink.makeVoterLink(pollData.voter_key);
-
-  // const queryString = encodeURIComponent(`email=${userEmail}&visitorkey=${pollData.voter_key}`)
-  res
+  
   //Send links to mailgun
   mailgun.sendAdminEmail(userEmail, adminLink, voterLink);
-  mailgun.sendVotersEmail(votersEmail, voterLink);
+
+  votersEmails.forEach((voterEmail) => {
+    mailgun.sendVotersEmail(voterEmail, voterLink);
+  });
   
   res.cookie("email", userEmail, {maxAge: 3600000});
   res.cookie("voter", pollData.voter_key, {maxAge: 3600000});
