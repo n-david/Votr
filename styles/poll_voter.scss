@@ -20,6 +20,7 @@ body.dragging, body.dragging * {
   background-color: lighten($brand-color-yellow, 20%);
   margin-left: 16%;
   padding: 50px;
+  display: none;
 
   h2 {
     color: $header-color;
@@ -81,7 +82,8 @@ ol.choices-list li.placeholder:before {
   background-color: $gray-bg;
   margin: 0 auto;
   padding: 30px;
-  overflow: hiden;
+  position: absolute;
+  overflow: hidden;
 
   button {
     background-color: darken($brand-color-blue, 10%);

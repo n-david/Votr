@@ -2,14 +2,18 @@ $(document).ready(function() {
 
   //sidebar popup on click
   $(".choice").on("click", function(event) {
+    $(this).closest(".voter-info").find(".choice-info-block").show("slide", {direction : "right"}, 300);
+    // $(this).closest(".voter-info").find(".vote").animate({"left" : "-=50px"}, "slow");
     const choiceTitle = $(this).html();
     const choiceDescription = $(this).data("description");
     const sidebar = $(this).closest(".voter-info").find(".choice-info-block");
-    
     sidebar.find("h2").html(choiceTitle);
     sidebar.find("p").html(choiceDescription);
-
+    // $(".choice-info-block").show("slide", {direction : "left"}, 1000);
+    
   });
+
+  
 
   //sort ol into array on 'vote button' clicked
   $(".vote-btn").on("click", function(event) {
