@@ -8,7 +8,7 @@ $(document).ready(function() {
     sidebar.find("h2").html(choiceTitle);
 
     if (checkIfUrl(choiceDescription)) {
-      $('p a').embedly({
+      $('p .choice-info-block').embedly({
         key: 'Your Embedly Key',
         query: {maxwidth:530} 
       });

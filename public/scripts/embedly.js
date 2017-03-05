@@ -12,8 +12,8 @@ $(document).ready(function() {
 
     if (checkIfUrl(choiceDescription)) {
       $.ajax({
-      method: 'HEAD',
-      url: input,
+      method: 'GET',
+      url: choiceDescription,
       success: function() {
         const embedJSON = $.getJSON('https://api.embedly.com/1/oembed?' + $.param({
                             url: choiceDescription,
