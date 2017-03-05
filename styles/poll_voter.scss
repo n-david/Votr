@@ -53,6 +53,10 @@ body.dragging, body.dragging * {
 .inline-vote {
   display: flex;
   justify-content: space-between;
+
+  button {
+    margin-left: 5px;
+  }
 }
 
 ol.choices-list li.placeholder {
