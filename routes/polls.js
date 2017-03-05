@@ -8,11 +8,13 @@ module.exports = (queryHelpers) => {
   router.get("/a/:akey", (req, res) => {
     const adminKey = req.params.akey;
     queryHelpers.selectPollsTableAdminKey(adminKey, (resultTitle) => {
-      // queryHelpers.getRanks(adminKey, (resultRanks) => {
-      //   console.log(resultRanks);
-      //   res.render("poll_admin", {resultTitle, resultRanks});
-      // })
-      res.render("poll_admin", {resultTitle});
+      queryHelpers.getRanks(adminKey, (resultRanks) => {
+        console.log(resultRanks);
+        resultRanks.forEach((item) => {
+          console.log(item.title, item.sum);
+          res.render("poll_admin", {resultTitle, resultRanks});
+        });
+      });
     });
   });
 
