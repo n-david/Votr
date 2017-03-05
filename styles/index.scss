@@ -1,0 +1,72 @@
+.create-poll * {
+  font-family: $content-font;
+}
+.add-choice {
+  @include add-form;
+}
+
+.add-email-input {
+  @include add-form;
+  padding-right: 12px;
+}
+
+.delete-choice {
+  @include trash-bin-icon;
+}
+
+.delete-email-input {
+  @include trash-bin-icon;
+  color: #4a4a4a;
+  font-size: 1em;
+  margin-left: 5px;
+  &:hover {
+    color: $brand-color-red;
+    font-size: 1.1em;
+  }
+}
+
+.choice-inputs {
+  display: flex;
+}
+
+.choice-describe {
+  display: none;
+}
+
+.index {
+  background-color: lighten($brand-color-yellow, 10%);
+}
+.create-poll {
+  background-color: $gray-bg;
+  margin: 0 auto;
+  padding: 50px;
+  width: 500px;
+}
+
+.create-poll-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+
+  .btn {
+    margin-left: 5px;
+  }
+}
+
+.describe-expand {
+  color: darken($brand-color-blue, 10%);
+  cursor: pointer;
+  text-decoration: underline;
+  &:hover {
+    color: darken($brand-color-blue, 20%);
+  }
+}
+
+.email-section {
+  @include border-radius(5px);
+  background-color: lighten($brand-color-turquoise, 10%);
+  display: none;
+  padding: 10px;
+}
+
+

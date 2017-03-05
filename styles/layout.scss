@@ -1,7 +1,15 @@
+* {
+  box-sizing: content-box;
+}
+
 body {
   background-color: #EEE;
 
-  h1 {
-    color: #244751;
+  .container {
+    padding-top: 180px;
+  }
+
+  .container-fluid {
+    padding-top: 200px;
   }
 }

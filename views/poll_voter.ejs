@@ -1,57 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Meta Information -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+    <!-- Now using common _head with bootstrap-->
+    <%- include('partials/_head')%>
 
-    <!-- Layout CSS -->
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-
-    <!-- External Font -->
-    <!-- Glyphs -->
-    <script src="https://use.fontawesome.com/155465b6a9.js"></script>
-
-    <!-- App CSS -->
-
-    <!-- App JS -->
-    <script type="text/javascript" src="/scripts/app.js"></script>
-
-    <!-- Draggable jQuery UI functions-->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-    <!-- TEST CSS/JS partial -->
-    <%- include('partials/_test')%>
-
+    <script type="text/javascript" src="/vendor/jquery-sortable.js"></script>
+    <script type="text/javascript" src="/scripts/draggable.js"></script>
+    <script type="text/javascript" src="/scripts/test-app.js"></script>
   </head>
+  <%- include('partials/_nav')%>
 
   <body>
-    <%- include('partials/_nav')%>
-    <section class="container">
-      <section class="vote col-md-8">
-        <!-- TODO: Display title FROM 'polls'-->
-        <h1 class="poll-title">What to do on Saturday Night?</h1>
-     
-        <section class="poll-choices">
-          <!-- TODO: Display all choices FROM 'choices' WHERE poll_id = id-->
-          <ul class="choices-list sortable">
-            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
-            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
-            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
-            <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
-          </ul>
-        </section>
+    <section class="container-fluid poll-vote-page">
+      <div class="row voter-info">
+        <section class="vote col-md-7">
+          <!-- TODO: Display title FROM 'polls'-->
+          <!--<h1 class="poll-title" data-id="<%= pollResult.id %>"><%= pollResult.title %></h1>-->
+          <h1 class="poll-title"><%= pollResult.title %></h1>
+          <p class="poll-id"><%= pollResult.id %></p>
 
-        <section class="choice-info-block col-md-2">
-          <h2>party at my place</h2>
-          <p>There's unlimited juice? This party is gonna be off the hook. 
-            No, Pop-pop does not get a treat. I just bought you a f**king pizza. Mr. Zuckerkorn, you've been warned about touching. 
-            Barry: You said spanking.</p>
+          <section class="poll-choices">
+            <!-- TODO: Display all choices FROM 'choices' WHERE poll_id = id-->
+            <ol class='choices-list'>
+              <% choiceResult.forEach((result) => { %>
+              <li class='choice' data-description='<%=
+              result.description %>' data-id="<%= result.id %>">
+                <%= result.title %>
+              </li>
+              <% }); %>
+            </ol>
+          </section>
+          <section class="form-group">
+            <label for="voter_name">Type in your name here:</label>
+            <div class="name-input-box">
+              <input type="text" name="voter_name" class="name-input form-control">
+            </div>
+            <button class="vote-btn btn btn-primary">Vote!</button>
+            <div class="status-area"></div>
+
+          </section>
         </section>
+        <aside class="choice-info-block col-md-3">
+            <h2></h2>
+            <p></p>
+        </aside>
+      </div>
+
     </section>
   </body>
 </html>

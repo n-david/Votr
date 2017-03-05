@@ -1,0 +1,20 @@
+@import 'mixins';
+@import 'vars';
+@import 'layout';
+@import 'nav';
+@import 'index';
+@import 'modal';
+@import 'poll_voter';
+
+.clear {
+  clear: both;
+}
+
+.alert {
+  display: none;
+}
+
+.error {
+  color: red;
+}
+

@@ -11,32 +11,39 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+
 
 // Seperated Routes for each Resource
 //const usersRoutes = require("./routes/users");
 const queryHelpers = require("./lib/query-helpers")(knex);
 const pollRoutes = require("./routes/polls")(queryHelpers);
+const mailgun     = require("./lib/mailgun");
+const makeLink = require("./lib/util/get-link");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
-app.use(morgan('dev'));
-
-// Log knex SQL queries to STDOUT as well
-app.use(knexLogger(knex));
+if (ENV === "development") {
+  app.use(morgan("dev"));
+  app.use(knexLogger(knex));
+}
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/styles", sass({
-  src: __dirname + "/styles",
-  dest: __dirname + "/public/styles",
+app.use(cookieParser());
+
+//node-sass
+app.use(sass({
+  src: path.join(__dirname, "styles"),
+  dest: path.join(__dirname, "public/styles"),
   debug: true,
-  outputStyle: 'expanded'
-}));
-app.use(express.static("public"));
+  outputStyle: 'expanded',
+  prefix: '/styles'
+}),express.static("public"));
 
 // Mount all resource routes
-// app.use("/api/users", usersRoutes(knex));
 app.use("/poll", pollRoutes);
 
 // Home page
@@ -45,22 +52,51 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  const email = req.body.email
-  var api_key = 'key-80216e96640c6edd8a9e5bb8a9bcaae7';
-  var domain = 'sandboxa721143bbca24e14bca66e736c6fdfb9.mailgun.org';
-  var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
-
-  var data = {
-    from: 'Votr <postmaster@sandboxa721143bbca24e14bca66e736c6fdfb9.mailgun.org>',
-    to: email,
-    subject: 'Votr Admin/Voter Links',
-    text: `Testing some Mailgun awesomness! \n Admin url: adminURL \n Voter url: voterURL`
+  const userEmail = req.body.a_email;
+  const pollData = {
+    email: userEmail,
+    title: req.body.title,
+    description: req.body.description,
+    admin_key: makeLink.generateRandomString(),
+    voter_key: makeLink.generateRandomString(),
+    date_created: new Date(),
+    active: true
   };
 
-  mailgun.messages().send(data, function (error, body) {
-    console.log(body);
+  queryHelpers.insertPollTable(pollData, (poll_id) => {
+    for (let i = 0; i < req.body.choice.length; i++) {
+      const choiceData = {
+        title: req.body.choice[i],
+        description: req.body.choice_description[i],
+        poll_id: poll_id
+      }
+      queryHelpers.insertChoicesTable(choiceData)
+    }
+    //for each voter, insert into Voters Table with poll_id
   });
-  res.redirect("/poll/a/success");
+  const adminLink = makeLink.makeAdminLink(pollData.admin_key);
+  const voterLink = makeLink.makeVoterLink(pollData.voter_key);
+  
+  //Send links to mailgun
+  mailgun.sendAdminEmail(userEmail, adminLink, voterLink);
+
+  //Send voters links to mailgun 
+  if (typeof(req.body.v_email) === 'string') {
+    const voterEmail = req.body.v_email;
+    mailgun.sendVotersEmail(voterEmail, voterLink)
+  }
+
+  if (Array.isArray(req.body.v_email)) {
+    const votersEmails = req.body.v_email;
+    votersEmails.forEach((voterEmail) => {
+      mailgun.sendVotersEmail(voterEmail, voterLink);
+    });
+  }
+
+  res.cookie("email", userEmail, {maxAge: 3600000});
+  res.cookie("voter", pollData.voter_key, {maxAge: 3600000});
+  res.redirect(`poll/a/${pollData.admin_key}/success`);
+
 });
 
 app.listen(PORT, () => {

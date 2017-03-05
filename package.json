@@ -7,12 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "local": "./node_modules/.bin/nodemon --ignore public/",
-    "knex": "./node_modules/.bin/knex"
+    "knex": "./node_modules/.bin/knex",
+    "build-css": "node-sass --include-path scss styles/main.scss   public/styles/main.css"
   },
   "author": "Lighthouse Labs",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "cookie": "^0.3.1",
+    "cookie-parser": "^1.4.3",
     "dotenv": "^2.0.0",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
@@ -25,6 +28,7 @@
     "pg": "^6.0.2"
   },
   "devDependencies": {
+    "node-sass": "^4.5.0",
     "nodemon": "^1.11.0"
   }
 }

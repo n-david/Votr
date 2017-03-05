@@ -1,0 +1,100 @@
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.choice {
+  @include border-radius(2px);
+  background-color: lighten($brand-color-turquoise, 25%);
+  cursor: pointer;
+  padding: 10px;
+  &:nth-child(even) { 
+    background: lighten($brand-color-green, 30%);
+  }
+  &:hover{
+    background-color: lighten($brand-color-yellow, 30%);;
+  }
+}
+
+.choice-info-block {
+  @include border-radius(10px 0 0 10px);
+  background-color: lighten($brand-color-yellow, 20%);
+  margin-left: 16%;
+  padding: 50px;
+  display: none;
+
+  h2 {
+    color: $header-color;
+    font : {
+      family: $brand-font;
+      size: 2em;
+    }
+  }
+
+  p {
+    color: $content-color;
+    font : {
+      family: $content-font;
+      size: 0.8em;
+    }
+    padding-top: 8px;
+  }
+}
+
+.choices-list {
+  padding: 20px;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
+}
+
+ol.choices-list li.placeholder {
+  position: relative;
+  /** More li styles **/
+}
+ol.choices-list li.placeholder:before {
+  position: absolute;
+  /** Define arrowhead **/
+}
+
+.name-input-box {
+  margin: 0;
+  width: 20em;
+}
+
+.poll-title {
+  color: $brand-color-red;
+  font : {
+    family: $brand-font;
+    size: 2em;
+  }
+}
+
+.poll-vote-page {
+  background-color: $brand-color-turquoise;
+  height: 100vh;
+}
+
+.vote {
+  @include border-radius(10px);
+  background-color: $gray-bg;
+  margin: 0 auto;
+  padding: 30px;
+  position: absolute;
+  overflow: hidden;
+
+  button {
+    background-color: darken($brand-color-blue, 10%);
+    border: none;
+    float: right;
+  }
+}
+
+.voter-info {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+}
+

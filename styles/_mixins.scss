@@ -1,0 +1,44 @@
+// === MIXINS ===
+@mixin add-form {
+  color: $brand-color-blue;
+  float: right;
+  font-size: 1.5em;
+  &:hover {
+    text-shadow: 0.1em 0.1em 0.05em #333;
+  }
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+@mixin box-shadow($shadows...) {
+    -webkit-box-shadow: $shadows;
+      -moz-box-shadow: $shadows;
+        -ms-box-shadow: $shadows;
+        box-shadow: $shadows;
+}
+
+@mixin full-width {
+  left:0;
+  right:0;
+}
+
+@mixin primary-btn {
+  @include border-radius(5px);
+  background-color: $brand-color;
+  border: $border;
+  color: $brand-font-color;
+}
+
+@mixin trash-bin-icon {
+  color: $brand-color-red;
+  padding-left:5px;
+  &:hover {
+    color: darken($brand-color-red, 10%);
+    font-size: 1.2em;
+  }
+}
