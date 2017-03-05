@@ -5,7 +5,7 @@ body.dragging, body.dragging * {
 .choice {
   @include border-radius(2px);
   background-color: lighten($brand-color-turquoise, 25%);
-  cursor: pointer;
+  cursor: move;
   padding: 10px;
   &:nth-child(even) { 
     background: lighten($brand-color-green, 30%);
@@ -50,6 +50,11 @@ body.dragging, body.dragging * {
   z-index: 2000;
 }
 
+.inline-vote {
+  display: flex;
+  justify-content: space-between;
+}
+
 ol.choices-list li.placeholder {
   position: relative;
   /** More li styles **/
@@ -64,6 +69,14 @@ ol.choices-list li.placeholder:before {
   width: 20em;
 }
 
+.poll-info {
+  @include poll-lr-padding;
+}
+
+.poll-submit {
+   @include poll-lr-padding;
+}
+
 .poll-title {
   color: $brand-color-red;
   font : {
@@ -74,7 +87,7 @@ ol.choices-list li.placeholder:before {
 
 .poll-vote-page {
   background-color: $brand-color-turquoise;
-  height: 100vh;
+  height: 100%;
 }
 
 .vote {
@@ -92,9 +105,13 @@ ol.choices-list li.placeholder:before {
   }
 }
 
+.vote-content {
+  padding-left: 20px;
+}
+
 .voter-info {
   display: flex;
   justify-content: space-between;
-  padding-left: 20px;
+  padding-left: 10px;
 }
 

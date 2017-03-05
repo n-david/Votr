@@ -3,18 +3,14 @@ $(document).ready(function() {
   //sidebar popup on click
   $(".choice").on("click", function(event) {
     $(this).closest(".voter-info").find(".choice-info-block").show("slide", {direction : "right"}, 300);
-    // $(this).closest(".voter-info").find(".vote").animate({"left" : "-=50px"}, "slow");
     const choiceTitle = $(this).html();
     const choiceDescription = $(this).data("description");
     const sidebar = $(this).closest(".voter-info").find(".choice-info-block");
 
     sidebar.find("h2").html(choiceTitle);
     sidebar.find("p").html(choiceDescription);
-    // $(".choice-info-block").show("slide", {direction : "left"}, 1000);
 
   });
-
-
 
   //sort ol into array on 'vote button' clicked
   $(".vote-btn").on("click", function(event) {
@@ -29,19 +25,16 @@ $(document).ready(function() {
       voteResult.push($(this).data("id"));
     });
     const reverseResult = voteResult.reverse();
-
-    // const poll_id = $(".poll-title").data("id");
-    const poll_id = $(".poll-id").html();
-
-
+    const poll_id = $(".poll-title").data("id");
+   
     $.ajax({
       method: 'POST',
       url: '/poll/v/:vkey',
       data: {voteResult : reverseResult, voterName : voterName, poll_id : poll_id},
       success: function() {
-        console.log("Success");
-        //TODO: display modal success
-        //TODO: disable vote button
+         jQuery.noConflict();
+        $("#modal-success").modal('show');
+        $(".poll-submit").empty().append("<p>Thank you for voting!</p>");
       }
     });
   });

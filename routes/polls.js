@@ -65,7 +65,7 @@ module.exports = (queryHelpers) => {
       voteResult.forEach((choiceId, index) => {
         const choiceIdNum = Number(choiceId);
         queryHelpers.insertResultsTable(choiceIdNum, index, voter_id, () => {
-          // res.send("vote submitted");
+          res.send("vote submitted");
         });
       });
     });
