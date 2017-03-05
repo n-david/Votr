@@ -39,23 +39,6 @@ $(document).ready(function() {
     });
   });
 
-  //Modal popup on index.ejs
-  // $(".modal-container").on('shown.bs.modal', '#modal-preview', function(event) {
-  //   const modal = $(this);
-  //   alert("modal open");
-  //   console.log("modal open");
-  // });
-  // $('#modal-preview').on('show.bs.modal', function (event) {
-  //   const modal = $(this);
-  //   alert("modal open");
-  // });
-
-  //Modal close
-  // $("#modal-preview").on("hidden.bs.modal", function(event) {
-  //   // $(this).find("form").trigger("reset");
-  //   alert("modal close");
-  // });
-
   $(".add-emails").on("click", function(e) {
     $(".email-section").css("display", "block");
   });
@@ -73,14 +56,6 @@ $(document).ready(function() {
      $(this).closest("article").remove();
    });
 
-  // $(".email-list").on("click", ".delete-added-email", function(e) {
-  //     $(this).closest("li").remove();
-  // });
-
-  // $(".email-form").on("click", ".delete-email-input", function(e) {
-  //   $(this).closest("article").remove();
-  // });
-
   //Add email input on modal
   $(".add-email-input").on("click", function(e) {
     const emailFormGroup = `<article class="form-inline email-form-group">
@@ -90,26 +65,5 @@ $(document).ready(function() {
                             </article>`;
     $(this).closest(".email-containers").find(".email-form").append(emailFormGroup);
   });
-
-  //Add email inputs to index.ejs
-  // $(".add-email-btn").on("click", function(e) {
-  //   const emailsAdded = [];
-  //   $(".email-form-group").each(function() {
-  //     emailsAdded.push($(this).find("input").val());
-  //   });
-
-  //   //Ajax submit both emails & poll data
-  //   $("#new-poll").submit();
-    /*<span class="delete-added-email"><i class="fa fa-trash-o" aria-hidden="true"></i></span></li>*/
-    // const emailInput = `<article class="form-inline email-form-group"><input class="send-to" type="email" name="voter_email"><span class="delete-email-input"><i class="fa fa-times" aria-hidden="true"></i></span></article>`;
-    // emailsAdded.forEach((email) => {
-    //   $(".email-list").append(emailInput);
-
-    //   // emailInput.val(email);
-    // });
-
-    //clear extra emailFromGroups & fields
-    // $(".email-form article:not(:first)").remove();
-    // $(this).closest(".modal-body").find("form").trigger("reset");
-  });
+});
 
