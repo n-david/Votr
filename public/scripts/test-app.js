@@ -28,15 +28,15 @@ $(document).ready(function() {
     $('.choice').each(function(){
       voteResult.push($(this).data("id"));
     });
-
     const reverseResult = voteResult.reverse();
+    const poll_id = $(".poll-title").data("id");
 
     $.ajax({
       method: 'POST',
       url: '/poll/v/:vkey',
-      data: {voteResult : reverseResult, voterName : voterName},
+      data: {voteResult : reverseResult, voterName : voterName, poll_id: poll_id},
       success: function() {
-        console.log("Succes");
+        console.log("Success");
         //TODO: display modal success
         //TODO: disable vote button
       }

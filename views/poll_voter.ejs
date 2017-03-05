@@ -7,8 +7,6 @@
     <script type="text/javascript" src="/vendor/jquery-sortable.js"></script>
     <script type="text/javascript" src="/scripts/draggable.js"></script>
     <script type="text/javascript" src="/scripts/test-app.js"></script>
-
-
   </head>
   <%- include('partials/_nav')%>
 
@@ -17,9 +15,7 @@
       <div class="row voter-info">
         <section class="vote col-md-7">
           <!-- TODO: Display title FROM 'polls'-->
-          <h1 class="poll-title"><%= pollResult %></h1>
-          <!-- <h1 class="poll-title">What to do on Saturday Night?</h1> -->
-
+          <h1 class="poll-title" data-id="<%= pollResult.id %>"><%= pollResult.title %></h1>
           <section class="poll-choices">
             <!-- TODO: Display all choices FROM 'choices' WHERE poll_id = id-->
             <ol class='choices-list'>

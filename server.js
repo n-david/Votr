@@ -53,9 +53,6 @@ app.get("/", (req, res) => {
 
 app.post("/", (req, res) => {
   const userEmail = req.body.a_email;
-  const votersEmails = req.body.v_email;
-  console.log(votersEmails);
-
   const pollData = {
     email: userEmail,
     title: req.body.title,
@@ -83,10 +80,19 @@ app.post("/", (req, res) => {
   //Send links to mailgun
   mailgun.sendAdminEmail(userEmail, adminLink, voterLink);
 
-  votersEmails.forEach((voterEmail) => {
-    mailgun.sendVotersEmail(voterEmail, voterLink);
-  });
-  
+  //Send voters links to mailgun 
+  if (typeof(req.body.v_email) === 'string') {
+    const voterEmail = req.body.v_email;
+    mailgun.sendVotersEmail(voterEmail, voterLink)
+  }
+
+  if (Array.isArray(req.body.v_email)) {
+    const votersEmails = req.body.v_email;
+    votersEmails.forEach((voterEmail) => {
+      mailgun.sendVotersEmail(voterEmail, voterLink);
+    });
+  }
+
   res.cookie("email", userEmail, {maxAge: 3600000});
   res.cookie("voter", pollData.voter_key, {maxAge: 3600000});
   res.redirect(`poll/a/${pollData.admin_key}/success`);
