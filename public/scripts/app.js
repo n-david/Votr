@@ -12,7 +12,7 @@ $(document).ready(function() {
     const $deleteChoice = $("<span>").addClass("delete-choice").html(`<i class="fa fa-trash-o" aria-hidden="true"></i>`);
     $deleteChoice.on("click", deleteThis2);
 
-    const $describeExpand = $("<small>").addClass("describe-expand").html(`<p>Expand description box</p>`);
+    const $describeExpand = $("<small>").addClass("describe-expand").html(`<p>Expand Description</p>`);
     $describeExpand.on("click", expand2);
 
     // const $expandedDescription = $("<div>").addClass("choice-describe");
@@ -40,13 +40,23 @@ $(document).ready(function() {
 
   function expand() {
     $(".describe-expand").on("click", function() {
-    //const $descriptionBox = $();
-    $(this).siblings('.choice-describe').slideToggle('fast');
+      $(this).toggleClass('describe-expand');
+      if ($(this).hasClass('describe-expand')) {
+        $(this).html('<p>Expand Description</p>');
+      } else {
+        $(this).html('<p>Close Description</p>');
+      }
+      $(this).siblings('.choice-describe').slideToggle('fast');
     })
   }
 
-  function expand2(){
-      // $(".describe-expand2").on("click", function() {
+  function expand2() {
+    $(this).toggleClass('describe-expand');
+    if ($(this).hasClass('describe-expand')) {
+      $(this).html('<p>Expand Description</p>');
+    } else {
+      $(this).html('<p>Close Description</p>');
+    }
     $(this).siblings('.choice-describe').slideToggle('fast');
     // })
   }
