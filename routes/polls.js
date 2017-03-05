@@ -12,8 +12,8 @@ module.exports = (queryHelpers) => {
         console.log(resultRanks);
         resultRanks.forEach((item) => {
           console.log(item.title, item.sum);
+          res.render("poll_admin", {resultTitle, resultRanks});
         });
-        res.render("poll_admin", {resultTitle, resultRanks});
       });
     });
   });
