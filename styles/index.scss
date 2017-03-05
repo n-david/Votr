@@ -1,15 +1,28 @@
+.create-poll * {
+  font-family: $content-font;
+}
 .add-choice {
-  color: $brand-color-blue;
-  float: right;
-  font-size: 1.5em;
-  &:hover {
-    
-  }
+  @include add-form;
+}
+
+.add-email-input {
+  @include add-form;
+  padding-right: 12px;
 }
 
 .delete-choice {
-  color: $brand-color-red;
-  padding-left:5px;
+  @include trash-bin-icon;
+}
+
+.delete-email-input {
+  @include trash-bin-icon;
+  color: #4a4a4a;
+  font-size: 1em;
+  margin-left: 5px;
+  &:hover {
+    color: $brand-color-red;
+    font-size: 1.1em;
+  }
 }
 
 .choice-inputs {
@@ -48,4 +61,12 @@
     color: darken($brand-color-blue, 20%);
   }
 }
+
+.email-section {
+  @include border-radius(5px);
+  background-color: lighten($brand-color-turquoise, 10%);
+  display: none;
+  padding: 10px;
+}
+
 

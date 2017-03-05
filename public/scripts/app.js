@@ -33,7 +33,7 @@ $(document).ready(function() {
     return $choiceForm;
   }
 
-  $('.fa-plus').on('click', function() {
+  $('.add-choice').on('click', function() {
     createChoiceElement().appendTo($('.choice-container-created'));
     // expand();
   });
