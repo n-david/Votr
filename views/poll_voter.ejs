@@ -15,7 +15,10 @@
       <div class="row voter-info">
         <section class="vote col-md-7">
           <!-- TODO: Display title FROM 'polls'-->
-          <h1 class="poll-title" data-id="<%= pollResult.id %>"><%= pollResult.title %></h1>
+          <!--<h1 class="poll-title" data-id="<%= pollResult.id %>"><%= pollResult.title %></h1>-->
+          <h1 class="poll-title"><%= pollResult.title %></h1>
+          <p class="poll-id"><%= pollResult.id %></p>
+
           <section class="poll-choices">
             <!-- TODO: Display all choices FROM 'choices' WHERE poll_id = id-->
             <ol class='choices-list'>

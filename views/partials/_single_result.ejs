@@ -1,6 +1,9 @@
 <h1>People Voted:</h1>
 <section class="voted-list">
   <ul>
+    <% resultVoter.forEach((voter) => { %>
+      <li><%= voter.name %></li>
+    <% }); %>
     <li class="voter">
       <span class="voter-name">Anna</span>
       <a href="#">See their votes</a>

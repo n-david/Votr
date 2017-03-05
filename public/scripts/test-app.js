@@ -29,12 +29,15 @@ $(document).ready(function() {
       voteResult.push($(this).data("id"));
     });
     const reverseResult = voteResult.reverse();
-    const poll_id = $(".poll-title").data("id");
+
+    // const poll_id = $(".poll-title").data("id");
+    const poll_id = $(".poll-id").html();
+
 
     $.ajax({
       method: 'POST',
       url: '/poll/v/:vkey',
-      data: {voteResult : reverseResult, voterName : voterName, poll_id: poll_id},
+      data: {voteResult : reverseResult, voterName : voterName, poll_id : poll_id},
       success: function() {
         console.log("Success");
         //TODO: display modal success
