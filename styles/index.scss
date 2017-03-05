@@ -54,12 +54,11 @@
 }
 
 .describe-expand {
-  color: darken($brand-color-blue, 10%);
-  cursor: pointer;
-  text-decoration: underline;
-  &:hover {
-    color: darken($brand-color-blue, 20%);
-  }
+  @include link-effect;
+}
+
+.describe-close {
+  @include link-effect;  
 }
 
 .email-section {
@@ -68,5 +67,6 @@
   display: none;
   padding: 10px;
 }
+
 
 

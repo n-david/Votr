@@ -44,7 +44,7 @@ $(document).ready(function() {
       if ($(this).hasClass('describe-expand')) {
         $(this).html('<p>Expand Description</p>');
       } else {
-        $(this).html('<p>Close Description</p>');
+        $(this).html('<p class="describe-close">Close Description</p>');
       }
       $(this).siblings('.choice-describe').slideToggle('fast');
     })
@@ -55,7 +55,7 @@ $(document).ready(function() {
     if ($(this).hasClass('describe-expand')) {
       $(this).html('<p>Expand Description</p>');
     } else {
-      $(this).html('<p>Close Description</p>');
+      $(this).html('<p class="describe-close">Close Description</p>');
     }
     $(this).siblings('.choice-describe').slideToggle('fast');
     // })
