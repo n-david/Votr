@@ -1,0 +1,50 @@
+.poll-title {
+  font-size: 60px;
+  color: black;
+}
+
+.poll-describe {
+  padding-top: 5px;
+  padding-left: 20px;
+  font-size: 20px;
+  color: #4c4c4c;
+}
+
+.poll-info {
+  padding-left: 30px;
+}
+
+.winner {
+  font-size: 50px;
+  padding: 20px;
+  color: white;
+}
+
+.losers {
+  font-size: 30px;
+  padding-left: 20px;
+  padding: 20px;
+  color: white;
+  text-decoration: line-through;
+}
+
+.single-poll-result {
+  font-size: 17px;
+  left: 150px;
+  bottom: -12px;
+  color: black;
+}
+
+.voter {
+  padding: 20px;
+}
+
+.each-voter {
+  padding: 3px;
+}
+
+.create-another-poll button {
+  position: relative;
+  bottom: -20px;
+  margin: 20px;
+}

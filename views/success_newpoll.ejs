@@ -9,13 +9,13 @@
     <%- include('partials/_nav')%>
     <section class="container">
       <section class="poll-success">
-        <h1>Success!</h1>
+        <h1>Done.</h1>
         <div class="status-message">
-          <p>Links sent to <%=userEmail%></p>
+          <p><%=userEmail%></p>
         </div>
-        <p>Admin Link: <a href="http://localhost:8080/poll/a/<%=adminKey%>">http://localhost:8080/poll/a/<%=adminKey%></a></p>
-        <p>Visitor Link: <a href="http://localhost:8080/poll/v/<%=voterKey%>">http://localhost:8080/poll/v/<%=voterKey%></a></p>
-        <a href="/">Create another new poll</a>
+        <p class="links">Admin Link: <a href="http://localhost:8080/poll/a/<%=adminKey%>">http://localhost:8080/poll/a/<%=adminKey%></a></p>
+        <p class="links">Share: <a href="http://localhost:8080/poll/v/<%=voterKey%>">http://localhost:8080/poll/v/<%=voterKey%></a></p>
+        <a href="/">Create another poll</a>
       </section>
 
     </section>

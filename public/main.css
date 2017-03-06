@@ -120,6 +120,7 @@ body .container-fluid {
   padding: 50px;
   width: 500px;
   border-radius: 40px;
+  margin-top: 40px;
 }
 
 .create-poll-actions {
@@ -305,6 +306,7 @@ ol.choices-list li.placeholder:before {
 
 label {
   color: white;
+  display: hide;
 }
 
 .site-function {
@@ -314,3 +316,28 @@ label {
   font-size: 20px;
 }
 
+textarea[type=text] {
+    border: 0px solid #000000;
+    border-bottom-width: 1px;
+    background-color: transparent;
+}
+
+input[type=email]
+{
+    border: 0px solid #000000;
+    border-bottom-width: 1px;
+    background-color: transparent;
+}
+
+input[type=text]
+{
+    border: 0px solid #000000;
+    border-bottom-width: 1px;
+    background-color: transparent;
+}
+
+/*
+<style type="text/css">
+   body { background: #66ADFF !important; }
+</style>
+*/

@@ -14,8 +14,11 @@
         <section class="poll-info">
           <!-- TODO: Display title, description FROM 'polls'-->
           <h1 class="poll-title"><%= resultTitle.title %></h1>
-          <p class="poll-describe"><%= resultTitle.description %></p>
-            <h2>The winner is: <%= winner %>!!!!!!!!!!!</h2>
+          <p class="poll-describe">- <%= resultTitle.description %></p>
+          <h2 class="winner"><%= winner %>.</h2>
+          <% resultRanks.forEach((loser) => { %>
+            <h2 class="losers"><%= loser.title %></h2>
+          <% }); %>
         </section>
         <section class="poll-choices">
           <!-- TODO: Display all choices FROM 'choices' WHERE poll_id = id-->
@@ -23,12 +26,8 @@
         </section>
 
         <footer class="result-poll-actions">
-          <div class="close-poll">
-            <small><p>Close poll and Send results to your friends</p></small>
-            <button type="button" class="btn btn-primary">Close poll</button>
-          </div>
           <div class="create-another-poll">
-            <button type="button" class="btn btn-primary">Create a new poll!</button>
+            <button type="button" class="btn btn-primary">New poll</button>
           </div>
         </footer>
       </section>

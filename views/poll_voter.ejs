@@ -21,6 +21,7 @@
 
           <section class="poll-choices">
             <!-- TODO: Display all choices FROM 'choices' WHERE poll_id = id-->
+            <span class="thumbs">&uarr;</span>
             <ol class='choices-list'>
               <% choiceResult.forEach((result) => { %>
               <li class='choice' data-description='<%=
@@ -29,11 +30,12 @@
               </li>
               <% }); %>
             </ol>
+            <span class="thumbs">&darr;</span>
           </section>
           <section class="form-group">
-            <label for="voter_name">Type in your name here:</label>
+            <label for="voter_name"></label>
             <div class="name-input-box">
-              <input type="text" name="voter_name" class="name-input form-control">
+              <input type="text" name="voter_name" class="name-input form-control" placeholder="Name">
             </div>
             <button class="vote-btn btn btn-primary">Vote!</button>
             <div class="status-area"></div>

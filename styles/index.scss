@@ -34,13 +34,14 @@
 }
 
 .index {
-  background-color: lighten($brand-color-yellow, 10%);
+  background-color: #6CC6B0;
 }
 .create-poll {
-  background-color: $gray-bg;
+  background-color: #6CC6B0;
   margin: 0 auto;
   padding: 50px;
   width: 500px;
+  height: 100%;
 }
 
 .create-poll-actions {
@@ -54,7 +55,7 @@
 }
 
 .describe-expand {
-  color: darken($brand-color-blue, 10%);
+  color: #EEEEEE;
   cursor: pointer;
   text-decoration: underline;
   &:hover {
@@ -64,9 +65,55 @@
 
 .email-section {
   @include border-radius(5px);
-  background-color: lighten($brand-color-turquoise, 10%);
+  background-color: lighten($brand-color-turquoise, 15%);
   display: none;
-  padding: 10px;
+  padding-top: 22px;
 }
 
+textarea[type=text] {
+    border: 0px solid #000000;
+    border-bottom-width: 2px;
+    background-color: transparent;
+    border-color: white;
+}
 
+input[type=email] {
+    border: 0px solid #000000;
+    border-bottom-width: 2px;
+    background-color: transparent;
+    border-color: white;
+}
+
+input[type=text] {
+    border: 0px solid #000000;
+    border-bottom-width: 2px;
+    background-color: transparent;
+    border-color: white;
+}
+
+label {
+  color: white;
+  font-size: 18px;
+}
+
+.btn {
+  background-color: #f9f9f9;
+  &:hover {
+    background-color: #d3d3d3;
+  }
+}
+
+.container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.container h1 {
+  font-size: 50px;
+  padding-bottom: 20px;
+}
+
+.container .links {
+  font-size: 20px;
+}

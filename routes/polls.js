@@ -13,10 +13,19 @@ module.exports = (queryHelpers) => {
         for (let i = 0; i < resultRanks.length - 1; i++) {
           if (resultRanks[i].sum < resultRanks[i + 1].sum) {
             winner = resultRanks[i + 1].title;
+            // delete resultRanks[i + 1].title;
+            // delete resultRanks[i + 1].sum;
           }
         }
+        for (let j = 0; j < resultRanks.length; j++) {
+          if (resultRanks[j].title === winner) {
+            console.log(resultRanks[j].title);
+            resultRanks.splice(j, 1);
+          }
+        }
+        console.log(resultRanks);
         queryHelpers.getVoter(adminKey, (resultVoter) => {
-          res.render("poll_admin", {resultTitle, winner, resultVoter});
+          res.render("poll_admin", {resultTitle, winner, resultRanks, resultVoter});
         })
       });
     });
