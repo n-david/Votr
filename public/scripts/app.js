@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  $('input').attr('autocomplete', 'off');
+  
   //Each choice on click: show sidebar with embed content or plain text
   $(".choice").on("click", function(event) {
     const sidebar = $(this).closest(".voter-info").find(".choice-info-block");

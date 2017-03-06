@@ -10,15 +10,17 @@
     <section class="container">
       <section class="poll-success">
         <h1>Done.</h1>
-        <div class="status-message">
-          <p><%=userEmail%></p>
-        </div>
-        <p class="links">Admin Link: <a href="http://localhost:8080/poll/a/<%=adminKey%>">http://localhost:8080/poll/a/<%=adminKey%></a></p>
-        <p class="links">Share: <a href="http://localhost:8080/poll/v/<%=voterKey%>">http://localhost:8080/poll/v/<%=voterKey%></a></p>
-        <a href="/">Create another poll</a>
+        <section class="status-message">
+          <p>Your friends should be receiving your poll any time!</p>
+          <p>We have also sent both the admin link and submission link to:</p>
+          <span><%=userEmail%></span>
+        </section>
+        <section class="links-container">
+          <p class="links">Admin Link: <a href="http://localhost:8080/poll/a/<%=adminKey%>">http://localhost:8080/poll/a/<%=adminKey%></a></p>
+          <p class="links">Share: <a href="http://localhost:8080/poll/v/<%=voterKey%>">http://localhost:8080/poll/v/<%=voterKey%></a></p>
+        </section>
+        <a class="btn btn-primary" href="/" role="button">Create another poll</a>
       </section>
-
     </section>
-
   </body>
 </html>

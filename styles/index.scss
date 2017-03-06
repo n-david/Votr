@@ -104,7 +104,7 @@ input[type=text] {
 
 textarea[type=text] {
   @include border-radius(2px);
-  background-color: transparent;
+  background-color: lighten($brand-color, 5%);
   border: 3px solid #fff;
   height: 70px;
   resize: none;
@@ -114,6 +114,5 @@ label {
   color: white;
   font-size: 18px;
 }
-
 
 
