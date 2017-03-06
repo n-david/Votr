@@ -50,15 +50,7 @@ body.dragging, body.dragging * {
   z-index: 2000;
 }
 
-.embed-frame {
-  position: relative;
-  padding-bottom: 67.5%;
-  height: 0;
-  margin: 10px 0;
-  overflow: hidden;
-}
-
-.embed-frame iframe {
+.embedly-embed {
   position: absolute;
   top: 0;
   left: 0;
