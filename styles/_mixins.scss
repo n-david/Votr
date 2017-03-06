@@ -34,11 +34,24 @@
   color: $brand-font-color;
 }
 
+@mixin poll-lr-padding {
+  padding: 0 20px;
+}
+
 @mixin trash-bin-icon {
   color: $brand-color-red;
   padding-left:5px;
   &:hover {
     color: darken($brand-color-red, 10%);
     font-size: 1.2em;
+  }
+}
+
+@mixin link-effect {
+  color: darken($brand-color-blue, 10%);
+  cursor: pointer;
+  text-decoration: underline;
+  &:hover {
+    color: darken($brand-color-blue, 20%);
   }
 }

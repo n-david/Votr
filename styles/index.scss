@@ -55,12 +55,17 @@
 }
 
 .describe-expand {
+  @include link-effect;
   color: #EEEEEE;
   cursor: pointer;
   text-decoration: underline;
   &:hover {
     color: darken($brand-color-blue, 20%);
   }
+}
+
+.describe-close {
+  @include link-effect;
 }
 
 .email-section {

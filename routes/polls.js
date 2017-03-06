@@ -1,8 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 
-
-module.exports = (queryHelpers) => {
+module.exports = (queryHelpers, mailgun) => {
 
   //All routes that prefixes with /polls/ go here
   router.get("/a/:akey", (req, res) => {
@@ -68,17 +67,19 @@ module.exports = (queryHelpers) => {
     const voteResult = req.body.voteResult;
     const voterName = req.body.voterName;
     const poll_id = req.body.poll_id;
-    console.log(poll_id, 'where is this');
 
-    queryHelpers.insertVotersTable(voterName, poll_id, (voter_id) => {
-      voteResult.forEach((choiceId, index) => {
-        const choiceIdNum = Number(choiceId);
-        queryHelpers.insertResultsTable(choiceIdNum, index, voter_id, () => {
-          // res.send("vote submitted");
+    queryHelpers. selectUsersTableByPollId(poll_id, (userData) => {
+      mailgun.sendAdminResults(userData.email);
+    });
+
+      queryHelpers.insertVotersTable(voterName, poll_id, (voter_id) => {
+        voteResult.forEach((choiceId, index) => {
+          const choiceIdNum = Number(choiceId);
+          queryHelpers.insertResultsTable(choiceIdNum, index, voter_id, () => {
+              res.end("vote submitted");
+          });
         });
       });
     });
-  });
-
   return router;
 }
