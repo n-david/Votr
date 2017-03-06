@@ -1,8 +1,11 @@
 $(document).ready(function() {
+  $('input').attr('autocomplete', 'off');
+
   //Each choice on click: show sidebar with embed content or plain text
   $(".choice").on("click", function(event) {
     const sidebar = $(this).closest(".voter-info").find(".choice-info-block");
     sidebar.show("slide", {direction : "right"}, 300);
+    sidebar.closest(".voter-info").find(".vote").css("margin", "0 0 0 40px");
     const choiceTitle = $(this).html();
     const choiceDescription = $(this).data("description");
     sidebar.empty();
@@ -15,7 +18,20 @@ $(document).ready(function() {
       sidebar.find("a").html(choiceDescription);
       $('a').embedly({
         key: 'd37e5b7ef8754516a19d57a2bb857cf4',
-        query: {maxwidth: 450, maxheight: 450}
+        query: {maxwidth: 500, maxheight: 500}
+      });
+      //Responsive video and google maps
+      $('a').embedly({
+        display: function(obj){
+          if (obj.type === 'video' || obj.type === 'rich'){
+            var ratio = ((obj.height/obj.width)*100).toPrecision(4) + '%';
+            var div = $('<div class="embed-frame">').css({
+              paddingBottom: ratio
+            });
+            div.html(obj.html);
+            $(this).replaceWith(div);
+          }
+        }
       });
     } else {
       sidebar.find("p").html(choiceDescription);
@@ -51,7 +67,7 @@ $(document).ready(function() {
 
   //Show email input container
   $(".add-emails").on("click", function(e) {
-    $(".email-section").css("display", "block");
+    $(".email-section").slideToggle(500);
   });
 
   //Appened new email input to email container

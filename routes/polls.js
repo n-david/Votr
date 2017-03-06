@@ -52,10 +52,6 @@ module.exports = (queryHelpers, mailgun) => {
     res.render("success_votepoll");
   });
 
-  router.get("/v/:vkey/error", (req, res) => {
-    res.render("already_voted");
-  });
-
   router.get("/all/", (req, res) => {
     queryHelpers.getAllPolls((allPolls) => {
       res.json(allPolls);

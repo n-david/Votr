@@ -7,7 +7,7 @@
     <%- include('partials/_nav')%>
     <section class="container-fluid poll-vote-page">
       <section class="row voter-info">
-        <section class="vote col-md-7">
+        <section class="vote col-md-5 col-sm-10">
           <section class="poll-info">
             <h1 class="poll-title" data-id="<%= pollResult.id %>"><%= pollResult.title %></h1>
             <p class="poll-description"><%= pollResult.description %></p>
@@ -37,8 +37,10 @@
           </section>
         </section>
       </section>
-        <aside class="choice-info-block col-md-3"></aside>
-        <%- include('partials/_modal_ajaxsuccess')%>
+      <aside class="choice-info-block col-md-5">
+          <iframe class="embedly-embed" src="">
+      </aside>
+      <%- include('partials/_modal_ajaxsuccess')%>
     </section>
   </body>
 </html>
