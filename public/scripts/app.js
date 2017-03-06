@@ -51,7 +51,7 @@ $(document).ready(function() {
 
   //Show email input container
   $(".add-emails").on("click", function(e) {
-    $(".email-section").css("display", "block");
+    $(".email-section").slideToggle(500);
   });
 
   //Appened new email input to email container
