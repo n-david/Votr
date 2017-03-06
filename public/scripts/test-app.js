@@ -1,20 +1,31 @@
 $(document).ready(function() {
 
     $(".choice").on("click", function(event) {
+
     $(this).closest(".voter-info").find(".choice-info-block").show("slide", {direction : "right"}, 300);
     const choiceTitle = $(this).html();
     const choiceDescription = $(this).data("description");
     const sidebar = $(this).closest(".voter-info").find(".choice-info-block");
+    sidebar.empty();
+    sidebar.append("<h2></h2><p></p>");
     sidebar.find("h2").html(choiceTitle);
-
+    console.log(choiceDescription);
     if (checkIfUrl(choiceDescription)) {
-      $('p .choice-info-block').embedly({
-        key: 'Your Embedly Key',
-        query: {maxwidth:530} 
-      });
+
+      console.log('wenthere');
+      sidebar.append("<a href=''></a>")
+      sidebar.find("a").attr("href", choiceDescription);
+      sidebar.find("a").html(choiceDescription);
+    $('a').embedly({
+      key: 'd37e5b7ef8754516a19d57a2bb857cf4',
+      query: {maxwidth:200, maxheight: 200}
+    });
+
     } else {
+      console.log('Else');
       sidebar.find("p").html(choiceDescription);
     }
+
   });
 
   //sidebar popup on click
@@ -43,7 +54,7 @@ $(document).ready(function() {
     });
     const reverseResult = voteResult.reverse();
     const poll_id = $(".poll-title").data("id");
-   
+
     $.ajax({
       method: 'POST',
       url: '/poll/v/:vkey',
