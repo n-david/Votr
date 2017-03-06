@@ -13,6 +13,7 @@ const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const embedly = process.env.EMBEDLY_API;
 
 
 // Seperated Routes for each Resource
