@@ -1,10 +1,11 @@
 $(document).ready(function() {
   $('input').attr('autocomplete', 'off');
-  
+
   //Each choice on click: show sidebar with embed content or plain text
   $(".choice").on("click", function(event) {
     const sidebar = $(this).closest(".voter-info").find(".choice-info-block");
     sidebar.show("slide", {direction : "right"}, 300);
+    sidebar.closest(".voter-info").find(".vote").css("margin", "0 0 0 40px");
     const choiceTitle = $(this).html();
     const choiceDescription = $(this).data("description");
     sidebar.empty();
