@@ -1,33 +1,29 @@
 $(document).ready(function() {
 
     $(".choice").on("click", function(event) {
-    $(this).closest(".voter-info").find(".choice-info-block").show("slide", {direction : "right"}, 300);
-    const choiceTitle = $(this).html();
-    const choiceDescription = $(this).data("description");
-    const sidebar = $(this).closest(".voter-info").find(".choice-info-block");
-    sidebar.find("h2").html(choiceTitle);
+      $(this).closest(".voter-info").find(".choice-info-block").show("slide", {direction : "right"}, 300);
+      const sidebar = $(this).closest(".voter-info").find(".choice-info-block");
+      //Recreate fields
+      sidebar.empty();
+      sidebar.append("<h2></h2><p></p>");
 
-    if (checkIfUrl(choiceDescription)) {
-      $('p .choice-info-block').embedly({
-        key: 'Your Embedly Key',
-        query: {maxwidth:530} 
-      });
-    } else {
-      sidebar.find("p").html(choiceDescription);
-    }
-  });
+      const choiceTitle = $(this).html();
+      const choiceDescription = $(this).data("description");
+      sidebar.show("slide", {direction : "right"}, 300);
+      sidebar.find("h2").html(choiceTitle);
+      // sidebar.find("p").html(choiceDescription);
+      
+      if (checkIfUrl(choiceDescription)) {
+        const url = choiceDescription;
+        sidebar.append("<a href='' class='btn modal-preview-button'>Click to see attached media</a>");
+        sidebar.find("a").attr("href", url);
+        // $(".show-modal-embed").css("visibility", "visible");
+      } else {
+        sidebar.find("p").html(choiceDescription);
+        sidebar.find("a").css("visibility", "hidden");
+      }
+    });
 
-  //sidebar popup on click
-  // $(".choice").on("click", function(event) {
-  //   $(this).closest(".voter-info").find(".choice-info-block").show("slide", {direction : "right"}, 300);
-  //   const choiceTitle = $(this).html();
-  //   const choiceDescription = $(this).data("description");
-  //   const sidebar = $(this).closest(".voter-info").find(".choice-info-block");
-
-  //   sidebar.find("h2").html(choiceTitle);
-  //   sidebar.find("p").html(choiceDescription);
-
-  // });
 
   //sort ol into array on 'vote button' clicked
   $(".vote-btn").on("click", function(event) {
