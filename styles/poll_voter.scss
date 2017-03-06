@@ -4,11 +4,11 @@ body.dragging, body.dragging * {
 
 .choice {
   @include border-radius(2px);
-  background-color: lighten($brand-color, 30%);
-  cursor: move;
+  background-color: $brand-color;
+  cursor: pointer;
   padding: 10px;
   &:nth-child(even) {
-    background: lighten($generic-gray, 12%);
+    background: $brand-color-darken;
   }
   &:hover{
     background-color: darken(white, 10%);;
@@ -40,6 +40,10 @@ body.dragging, body.dragging * {
   }
 }
 
+.choice-info-block * {
+  margin: 0 auto;
+}
+
 .choices-list {
   padding: 20px;
 }
@@ -51,6 +55,7 @@ body.dragging, body.dragging * {
 }
 
 .embedly-embed {
+  @include border-radius(10px);
   position: absolute;
   top: 0;
   left: 0;
@@ -101,11 +106,12 @@ ol.choices-list li.placeholder:before {
 .poll-vote-page {
   background-color: $brand-color;
   height: 100%;
+  margin-bottom: 80px;
 }
 
 .vote {
   @include border-radius(10px);
-  background-color: rgba(255,255,255,0.75);
+  background-color: rgba(255,255,255,0.65);
   margin: 0 auto;
   padding-bottom: 30px;
   padding-top: 30px;
