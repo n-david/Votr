@@ -1,0 +1,26 @@
+.poll-success {
+  @include border-radius(10px);
+  background-color: rgba(255, 255, 255, 0.80);
+  overflow: hidden;
+  padding: 30px;
+  text-align: center;
+  
+  span {
+    color: $dark-green;
+    display: inline-block;
+    font-size: 1.2em;
+  }
+}
+
+.links-container {
+  @include border-radius(10px);
+  background-color: lighten($dark-green, 50%);
+  color: $content-color;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+
+  a {
+    color: $dark-green;
+  }
+}

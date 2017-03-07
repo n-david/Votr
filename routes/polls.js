@@ -8,21 +8,20 @@ module.exports = (queryHelpers, mailgun) => {
     const adminKey = req.params.akey;
     queryHelpers.selectPollsTableAdminKey(adminKey, (resultTitle) => {
       queryHelpers.getRanks(adminKey, (resultRanks) => {
-        let winner = resultRanks[0].title;
+        let winner = resultRanks[0];
+
         for (let i = 0; i < resultRanks.length - 1; i++) {
-          if (resultRanks[i].sum < resultRanks[i + 1].sum) {
-            winner = resultRanks[i + 1].title;
-            // delete resultRanks[i + 1].title;
-            // delete resultRanks[i + 1].sum;
+          if (Number(winner.sum) < Number(resultRanks[i + 1].sum)) {
+            winner = resultRanks[i + 1];
           }
         }
         for (let j = 0; j < resultRanks.length; j++) {
-          if (resultRanks[j].title === winner) {
-            console.log(resultRanks[j].title);
+          if (resultRanks[j].title === winner.title) {
             resultRanks.splice(j, 1);
           }
         }
-        console.log(resultRanks);
+
+        winner = winner.title;
         queryHelpers.getVoter(adminKey, (resultVoter) => {
           res.render("poll_admin", {resultTitle, winner, resultRanks, resultVoter});
         })
@@ -64,8 +63,10 @@ module.exports = (queryHelpers, mailgun) => {
     const voterName = req.body.voterName;
     const poll_id = req.body.poll_id;
 
-    queryHelpers. selectUsersTableByPollId(poll_id, (userData) => {
-      mailgun.sendAdminResults(userData.email);
+    queryHelpers.selectUsersTableByPollId(poll_id, (userData) => {
+      queryHelpers.selectPollsRetrieveAdmin(poll_id, (key) => {
+        mailgun.sendAdminResults(userData.email, key.admin_key);
+      })
     });
 
       queryHelpers.insertVotersTable(voterName, poll_id, (voter_id) => {

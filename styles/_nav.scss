@@ -1,18 +1,18 @@
 #nav-bar {
   @include full-width;
   background-color: #6CC6B0;
-  color: $brand-color-turquoise;
   display: flex;
   justify-content: space-between;
   height: 150px;
-  padding: $lr-pad;
+  padding: 2em 3em;
   position: fixed;
   top: 0;
   z-index: 1;
 
   .nav-brand {
-
-    padding-top: 70px;
+    font-family: $brand-font;
+    letter-spacing: 0.5px;
+    padding-top: 40px;
     span {
       font : {
         family: $brand-font;
@@ -33,14 +33,19 @@
     }
 
     .site-function {
-      font-size: 17px;
+      font-size: 24px;
       text-align: right;
 
     }
   }
 
-  h1 {
-    font-size: 75px;
+  .site-title {
     color: white;
+    font-size: 75px;
+    &:hover {
+      color: darken($brand-color, 20%);
+      text-decoration: none;
+
+    }
   }
 }
