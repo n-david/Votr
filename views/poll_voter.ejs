@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Now using common _head with bootstrap-->
     <%- include('partials/_head')%>
-
-    <script type="text/javascript" src="/vendor/jquery-sortable.js"></script>
-    <script type="text/javascript" src="/scripts/draggable.js"></script>
-    <script type="text/javascript" src="/scripts/test-app.js"></script>
   </head>
-  <%- include('partials/_nav')%>
-
   <body>
+    <%- include('partials/_nav')%>
     <section class="container-fluid poll-vote-page">
-      <div class="row voter-info">
+      <section class="row voter-info">
         <section class="vote col-md-7">
-          <!-- TODO: Display title FROM 'polls'-->
-          <!--<h1 class="poll-title" data-id="<%= pollResult.id %>"><%= pollResult.title %></h1>-->
-          <h1 class="poll-title"><%= pollResult.title %></h1>
-          <p class="poll-id"><%= pollResult.id %></p>
+          <section class="poll-info">
+            <h1 class="poll-title" data-id="<%= pollResult.id %>"><%= pollResult.title %></h1>
+            <p class="poll-description"><%= pollResult.description %></p>
+          </section>
 
           <section class="poll-choices">
-            <!-- TODO: Display all choices FROM 'choices' WHERE poll_id = id-->
+            <span class="thumbs">&uarr;</span>
             <ol class='choices-list'>
               <% choiceResult.forEach((result) => { %>
               <li class='choice' data-description='<%=
@@ -29,23 +23,22 @@
               </li>
               <% }); %>
             </ol>
+            <span class="thumbs">&darr;</span>
           </section>
           <section class="form-group">
-            <label for="voter_name">Type in your name here:</label>
-            <div class="name-input-box">
-              <input type="text" name="voter_name" class="name-input form-control">
-            </div>
-            <button class="vote-btn btn btn-primary">Vote!</button>
-            <div class="status-area"></div>
-
+            <section class="poll-submit">
+                <div class="inline-vote">
+                  <div class="name-input-box">
+                    <input type="text" name="voter_name" class="name-input form-control" placeholder="Name">
+                  </div>
+                <button class="vote-btn btn btn-primary">Vote!</button>
+              </div>
+              <section class="status-area"></section>
           </section>
         </section>
-        <aside class="choice-info-block col-md-3">
-            <h2></h2>
-            <p></p>
-        </aside>
-      </div>
-
+      </section>
+        <aside class="choice-info-block col-md-3"></aside>
+        <%- include('partials/_modal_ajaxsuccess')%>
     </section>
   </body>
 </html>

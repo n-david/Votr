@@ -4,22 +4,23 @@ body.dragging, body.dragging * {
 
 .choice {
   @include border-radius(2px);
-  background-color: lighten($brand-color-turquoise, 25%);
-  cursor: pointer;
+  background-color: lighten($brand-color-yellow, 30%);
+  cursor: move;
   padding: 10px;
-  &:nth-child(even) { 
+  &:nth-child(even) {
     background: lighten($brand-color-green, 30%);
   }
   &:hover{
-    background-color: lighten($brand-color-yellow, 30%);;
+    background-color: darken(white, 10%);;
   }
 }
 
 .choice-info-block {
   @include border-radius(10px 0 0 10px);
-  background-color: lighten($brand-color-yellow, 20%);
+  background-color: #fff;
+  background-color: lighten(rgba(255,255,255,0.5), 50%);
   margin-left: 16%;
-  padding: 50px;
+  padding: 30px;
   display: none;
 
   h2 {
@@ -34,7 +35,7 @@ body.dragging, body.dragging * {
     color: $content-color;
     font : {
       family: $content-font;
-      size: 0.8em;
+      size: 1.2em;
     }
     padding-top: 8px;
   }
@@ -48,6 +49,15 @@ body.dragging, body.dragging * {
   position: absolute;
   opacity: 0.5;
   z-index: 2000;
+}
+
+.inline-vote {
+  display: flex;
+  justify-content: space-between;
+
+  button {
+    margin-left: 5px;
+  }
 }
 
 ol.choices-list li.placeholder {
@@ -64,6 +74,14 @@ ol.choices-list li.placeholder:before {
   width: 20em;
 }
 
+.poll-info {
+  @include poll-lr-padding;
+}
+
+.poll-submit {
+   @include poll-lr-padding;
+}
+
 .poll-title {
   color: $brand-color-red;
   font : {
@@ -74,27 +92,48 @@ ol.choices-list li.placeholder:before {
 
 .poll-vote-page {
   background-color: $brand-color-turquoise;
-  height: 100vh;
+  height: 100%;
 }
 
 .vote {
   @include border-radius(10px);
-  background-color: $gray-bg;
+  background-color: #fff;
+  background-color: rgba(255,255,255,0.5);
   margin: 0 auto;
   padding: 30px;
   position: absolute;
   overflow: hidden;
 
   button {
-    background-color: darken($brand-color-blue, 10%);
     border: none;
     float: right;
   }
 }
 
+.vote-content {
+  padding-left: 20px;
+}
+
 .voter-info {
   display: flex;
   justify-content: space-between;
-  padding-left: 20px;
+  padding-left: 10px;
+}
+
+.vote-btn {
+  margin-right: 25px;
+  margin-bottom: 10px;
+}
+
+.thumbs {
+  font-size: 25px;
+}
+
+.poll-id {
+  display: none;
+}
+
+.poll-title {
+  padding-bottom: 50px;
 }
 

@@ -1,11 +1,11 @@
-<h1>People Voted:</h1>
+<h2>Voters</h2>
 <section class="voted-list">
-  <ul>
-    <li class="voter">
+  <ul class="voter">
       <% resultVoter.forEach((voter) => { %>
-        <span><%= voter.name %></span>
-      <% }); %> 
-      <a href="#">See their votes</a>
-    </li>
+        <li class="each-voter">
+          <span><%= voter.name %></span>
+<!--           <a href="#">See their votes</a>
+ -->       </li>
+      <% }); %>
   </ul>
 </section>

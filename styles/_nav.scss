@@ -1,6 +1,6 @@
 #nav-bar {
   @include full-width;
-  background-color: #fff;
+  background-color: #6CC6B0;
   color: $brand-color-turquoise;
   display: flex;
   justify-content: space-between;
@@ -11,7 +11,8 @@
   z-index: 1;
 
   .nav-brand {
-    padding-top: 20px;
+
+    padding-top: 70px;
     span {
       font : {
         family: $brand-font;
@@ -26,5 +27,20 @@
       height: 100px;
       width: 100px;
     }
+
+    div {
+      color: white;
+    }
+
+    .site-function {
+      font-size: 17px;
+      text-align: right;
+
+    }
+  }
+
+  h1 {
+    font-size: 75px;
+    color: white;
   }
 }
